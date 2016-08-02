@@ -21,7 +21,16 @@ class RecipesController < ApplicationController
   end
 
   def show
+  if params[:recipe_id]
+    @user = User.find_by(id: params[:user_id])
+    @recipe = @user.recipes.find_by(id: params[:id])
+    if @recipe.nil?
+      redirect_to user_recipes_path(@user), alert: "Recipe not found"
+    end
+  else
+    @recipe = Recipe.find(params[:id])
   end
+end
 
   def edit
   end
