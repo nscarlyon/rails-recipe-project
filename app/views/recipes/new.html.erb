@@ -1,2 +1,13 @@
 <h1>Recipes#new</h1>
-<p>Find me in app/views/recipes/new.html.erb</p>
+<%= form_for @recipe do |f|%>
+<%= f.label "Name:" %>
+<%= f.text_field :name %><br>
+Select item(s): <%= f.collection_check_boxes :item_ids, Item.all, :id, :name %><br>
+
+<%= f.fields_for(:items) do |i| %>
+ <%= i.label "Or create an item:" %>
+  <%= i.text_field :name %><br>
+<% end %>
+
+<%= f.submit %><br>
+<%end%>
