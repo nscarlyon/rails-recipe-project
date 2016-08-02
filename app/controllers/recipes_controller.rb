@@ -34,4 +34,11 @@ end
 
   def edit
   end
+
+  private
+
+  def recipe_params
+   params.require(:recipe).permit(:name, item_ids:[], item_attributes: [:name])
+  end
+
 end
