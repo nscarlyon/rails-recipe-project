@@ -2,7 +2,7 @@
     <ul>
         <li> <%= link_to "Home", home_path %> </li>
         <% if current_user %>
-          <li> <%= link_to "Recipes", user_recipes_path %></li>
+          <li> <%= link_to "Recipes", user_recipes_path(current_user) %></li>
         <% end %>
           <% if user_signed_in? %>
             <li>Signed in as <%= current_user.email %></li>
