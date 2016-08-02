@@ -2,8 +2,8 @@ class CreateIngredients < ActiveRecord::Migration[5.0]
   def change
     create_table :ingredients do |t|
       t.integer :quantity
-      t.belongs_to :user
-      t.belongs_to :item
+      t.integer :user_id
+      t.integer :item_id
 
       t.timestamps
     end

@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(version: 20160802161416) do
     t.integer  "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_ingredients_on_item_id"
-    t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -30,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160802161416) do
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
