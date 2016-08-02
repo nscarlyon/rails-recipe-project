@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
         if @user.nil?
-          redirect_to home_path, alert: "Artist not found"
+          redirect_to home_path, alert: "User not found"
         else
           @recipes = @user.recipes
         end
