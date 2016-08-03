@@ -21,7 +21,6 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-  #  @recipe.ingredients.build << Ingredient.new(params[:ingredients_attributes]["0"])
     @recipe.save
     redirect_to @recipe
   end
