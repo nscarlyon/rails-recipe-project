@@ -5,6 +5,6 @@ class Recipe < ApplicationRecord
 
   validates_presence_of :name
 
-  accepts_nested_attributes_for :ingredients, reject_if: proc {|attributes| attributes['quantity'].blank?}
+  accepts_nested_attributes_for :ingredients
 
 end

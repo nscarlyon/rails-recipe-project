@@ -16,17 +16,16 @@ class RecipesController < ApplicationController
   def new
     @user = current_user
     @recipe = Recipe.new
-    @recipe.ingredients.build.build_item
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
+
     if @recipe.valid?
       @recipe.save
       redirect_to @recipe, notice: "Recipe successfully created."
     else
       @user = current_user
-      @recipe.ingredients.build.build_item
       render action: 'new'
     end
   end
