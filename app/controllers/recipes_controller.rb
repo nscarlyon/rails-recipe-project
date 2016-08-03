@@ -48,7 +48,4 @@ end
    ingredients_attributes: [:id, :quantity, item_attributes: [:id, :name]])
   end
 
-  #params.require(:recipe).permit(:name, :user_id,
-  #:ingredients_attributes => {"0" => {}:id, :quantity, item_attributes: [:id, :name]])
-
 end
