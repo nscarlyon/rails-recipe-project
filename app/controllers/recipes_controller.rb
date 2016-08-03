@@ -17,15 +17,12 @@ class RecipesController < ApplicationController
     @user = User.find(params[:user_id])
     @recipe = Recipe.new
     @recipe.ingredients.build.build_item
-    @user.recipes << @recipe
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.user_id = current_user.id
+  #  @recipe.ingredients.build << Ingredient.new(params[:ingredients_attributes]["0"])
     @recipe.save
-    current_user.recipes << @recipe
-    current_user.save
     redirect_to @recipe
   end
 
@@ -47,7 +44,11 @@ end
   private
 
   def recipe_params
-   params.require(:recipe).permit(:name, :ingredients_attributes["0"] => [:id, :quantity, item_attributes:[:id, :name]])
+   params.require(:recipe).permit(:name, :user_id,
+   ingredients_attributes: [:id, :quantity, item_attributes: [:id, :name]])
   end
+
+  #params.require(:recipe).permit(:name, :user_id,
+  #:ingredients_attributes => {"0" => {}:id, :quantity, item_attributes: [:id, :name]])
 
 end

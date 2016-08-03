@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
-  has_many :recipes
+  has_many :ingredients
+  has_many :recipes, through: :ingredients
 
   validates :name, presence: true
 end

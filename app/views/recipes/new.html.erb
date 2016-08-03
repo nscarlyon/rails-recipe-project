@@ -2,6 +2,7 @@
 <%= form_for @recipe do |f|%>
 <%= f.label "Name:" %>
 <%= f.text_field :name %><br>
+<%= f.hidden_field :user_id, value: @user.id %>
 
 <%= f.fields_for :ingredients do |ingredients_form| %>
 <%= ingredients_form.label "Quantity:" %>
