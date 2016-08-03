@@ -14,14 +14,16 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     @recipe = Recipe.new
-    @ingredients = @recipe.ingredients.build
-    @item = @ingredients.build_item
+    @recipe.ingredients.build.build_item
+    @user.recipes << @recipe
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user_id = current_user.id
+    @recipe.save
     current_user.recipes << @recipe
     current_user.save
     redirect_to @recipe
@@ -45,7 +47,7 @@ end
   private
 
   def recipe_params
-   params.require(:recipe).permit(:id, :name, ingredients_attributes: [:id, :quantity, item_attributes: [:name, :id]])
+   params.require(:recipe).permit(:name, :ingredients_attributes["0"] => [:id, :quantity, item_attributes:[:id, :name]])
   end
 
 end
