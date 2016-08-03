@@ -21,10 +21,11 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    if @recipe.save
+    if @recipe.valid?
+      @recipe.save
       redirect_to @recipe, notice: "Recipe successfully created."
     else
-      redirect_to user_recipes_path(current_user)
+      redirect_to new_user_recipe_path(current_user)
     end
   end
 
