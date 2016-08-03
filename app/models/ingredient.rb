@@ -4,5 +4,5 @@ class Ingredient < ApplicationRecord
 
   validates :quantity, presence: true
 
-  accepts_nested_attributes_for :items
+  accepts_nested_attributes_for :item
 end

@@ -3,13 +3,13 @@
 <%= f.label "Name:" %>
 <%= f.text_field :name %><br>
 
-<%= f.fields_for :ingredients, do |ingredients_form| %>
+<%= f.fields_for :ingredients do |ingredients_form| %>
 <%= ingredients_form.label "Quantity:" %>
-<%= ingredients_form.text_field :quantity %>
+<%= ingredients_form.text_field :quantity %><br>
 
-<%= ingredients_form.fields_for :item, do |item_fields| %>
- <%= item_field.label "Or create an item:" %>
-  <%= item_field.text_field :name %><br>
+<%= ingredients_form.fields_for :item do |item_form| %>
+ <%= item_form.label "Or create an item:" %>
+  <%= item_form.text_field :name %><br>
 <% end %>
 <%end%>
 
