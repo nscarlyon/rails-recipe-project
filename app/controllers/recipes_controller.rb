@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user
     @recipe = Recipe.new
     @recipe.ingredients.build.build_item
   end
@@ -25,7 +25,9 @@ class RecipesController < ApplicationController
       @recipe.save
       redirect_to @recipe, notice: "Recipe successfully created."
     else
-      redirect_to new_user_recipe_path(current_user)
+      @user = current_user
+      @recipe.ingredients.build.build_item
+      render action: 'new'
     end
   end
 

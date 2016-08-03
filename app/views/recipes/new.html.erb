@@ -1,7 +1,7 @@
 <h1>Recipes#new</h1>
 <%= form_for @recipe do |f|%>
 
-<% if !@recipe.valid? %>
+<% if @recipe.errors.any? %>
 <div class="error_explanation">
   <h2><%= pluralize(@recipe.errors.count, "error") %> prevented this record from being saved:</h2>
   <ul>
