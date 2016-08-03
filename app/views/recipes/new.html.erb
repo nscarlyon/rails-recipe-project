@@ -4,9 +4,9 @@
 <%= f.text_field :name %><br>
 Select item(s): <%= f.collection_check_boxes :item_ids, Item.all, :id, :name %><br>
 
-<%= f.fields_for(:items), @recipe.items.build do |i| %>
- <%= i.label "Or create an item:" %>
-  <%= i.text_field :name %><br>
+<%= f.fields_for :items, @recipe.items.build do |items_fields| %>
+ <%= items_fields.label "Or create an item:" %>
+  <%= items_fields.text_field :name %><br>
 <% end %>
 
 <%= f.submit %><br>

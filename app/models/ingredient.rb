@@ -3,4 +3,6 @@ class Ingredient < ApplicationRecord
   belongs_to :recipe
 
   validates :quantity, presence: true
+
+  accepts_nested_attributes_for :items
 end
