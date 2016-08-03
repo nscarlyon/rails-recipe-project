@@ -5,11 +5,13 @@ class Recipe < ApplicationRecord
 
   validates :name, presence: true
 
-  def ingredient_attributes=(ingredient_attributes)
-    name = ingredient_attributes[:name]
-    Item.find_or_create_by(name)
-      self.ingredients.build(recipe_id:, item_id:, quantity: )
+  def items_attributes=(items_attributes)
+  items_attributes.values.each do |attribute|
+    if attribute != ""
+      item = Item.find_or_create_by(attribute)
+      self.items << item
     end
   end
+end
 
 end
