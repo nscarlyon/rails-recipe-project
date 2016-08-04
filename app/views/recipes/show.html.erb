@@ -5,3 +5,4 @@ Item: <%= i.item.name %> Quantity: <%= i.quantity%> <br>
 <%end%>
 
 <p><%=link_to "Add Ingredients", new_recipe_ingredient_path(@recipe) %>
+<p><%=link_to "Edit Recipe", edit_recipe_path(@recipe) %>
