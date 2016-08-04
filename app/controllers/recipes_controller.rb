@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
 
+before_action :set_recipe, only: [:edit, :update, :show]
+
   def index
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
@@ -31,24 +33,25 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find_by(id: params[:id])
     if @recipe.nil?
       redirect_to user_recipes_path(current_user), alert: "Recipe not found"
     end
 end
 
   def edit
-    @recipe = Recipe.find(params[:id])
     @user = User.find(@recipe.user_id)
   end
 
   def update
-     @recipe = Recipe.find(params[:id])
      @recipe.update(recipe_params)
      redirect_to @recipe
   end
 
   private
+
+  def set_recipe
+    @recipe = Recipe.find_by(id: params[:id])
+  end
 
   def recipe_params
    params.require(:recipe).permit(:name, :user_id,
