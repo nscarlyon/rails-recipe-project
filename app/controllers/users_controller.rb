@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  def most_recipes
+  def show
   end
-  
+
 end

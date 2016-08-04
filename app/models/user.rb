@@ -16,7 +16,7 @@ class User < ApplicationRecord
      end
 
      def self.most_recipes
-       User.joins(:recipes).group(:user_id).order("count(user_id) DESC").first
+       User.joins(:recipes).group(:user_id).order("count(user_id) DESC").first.email
      end
 
 end

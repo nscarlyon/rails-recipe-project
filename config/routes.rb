@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
   resources :recipes
 
+  get 'users/most_recipes', to: 'users#show'
 end
