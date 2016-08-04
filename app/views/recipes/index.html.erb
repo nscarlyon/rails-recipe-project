@@ -4,4 +4,6 @@
 <%= link_to r.name, recipe_path(r) %>
 <%end%>
 
+<%if @user == current_user %>
 <p><%= link_to "Add New Recipe", new_recipe_path(current_user) %></p>
+<%end%>
