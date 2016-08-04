@@ -1,0 +1,14 @@
+<%3.times do |x|%>
+
+<br>
+<%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_form| %>
+<%= ingredients_form.label "Quantity:" %>
+<%= ingredients_form.text_field :quantity %>
+
+<%= ingredients_form.fields_for :item, @recipe.ingredients.build.build_item do |item_form| %>
+<%= item_form.label "Item Name:" %>
+<%= item_form.text_field :name %><br>
+
+<%end%>
+<%end%>
+<%end%>

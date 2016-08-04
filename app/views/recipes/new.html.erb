@@ -16,27 +16,7 @@
 <%= f.text_field :name %><br>
 <%= f.hidden_field :user_id, value: @user.id %>
 
-<%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_form| %>
-<%= ingredients_form.label "Quantity:" %>
-<%= ingredients_form.text_field :quantity %><br>
+<%= render :partial => 'form', :locals => {:f => f, recipe: @recipe} %>
 
-<%= ingredients_form.fields_for :item, @recipe.ingredients.build.build_item do |item_form| %>
- <%= item_form.label "Item Name:" %>
-  <%= item_form.text_field :name %><br>
-
-<% end %>
-<%end%>
-
-<%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_form| %>
-<%= ingredients_form.label "Quantity:" %>
-<%= ingredients_form.text_field :quantity %><br>
-
-<%= ingredients_form.fields_for :item, @recipe.ingredients.build.build_item do |item_form| %>
- <%= item_form.label "Item Name:" %>
-  <%= item_form.text_field :name %><br>
-
-<% end %>
-<%end%>
-
-<%= f.submit %><br>
+<p><%= f.submit %></p>
 <%end%>
