@@ -31,18 +31,10 @@ class RecipesController < ApplicationController
   end
 
   def show
-  if params[:recipe_id]
-    @user = User.find_by(id: params[:user_id])
-    @recipe = @user.recipes.find_by(id: params[:id])
-    if @recipe.nil?
-      redirect_to user_recipes_path(@user), alert: "Recipe not found"
-    end
-  elsif params[:id]
     @recipe = Recipe.find_by(id: params[:id])
     if @recipe.nil?
       redirect_to user_recipes_path(current_user), alert: "Recipe not found"
     end
-  end
 end
 
   def edit
