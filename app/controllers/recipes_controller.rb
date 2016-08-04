@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
 
-before_action :set_recipe, only: [:edit, :update, :show]
+before_action :set_recipe, only: [:edit, :update, :show, :destroy]
 
   def index
     if params[:user_id]
@@ -45,6 +45,13 @@ end
   def update
      @recipe.update(recipe_params)
      redirect_to @recipe
+  end
+
+  def destroy
+    @recipe.ingredients.clear
+    @recipe.destroy
+    @recipe.save
+    redirect_to user_recipes_path(current_user), alert: "Recipe successfully deleted."
   end
 
   private
