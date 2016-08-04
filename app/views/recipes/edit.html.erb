@@ -1,2 +1,32 @@
 <h1>Recipes#edit</h1>
 <p>Find me in app/views/recipes/edit.html.erb</p>
+
+<%= form_for @recipe do |f|%>
+
+<% if @recipe.errors.any? %>
+<div class="error_explanation">
+  <h2><%= pluralize(@recipe.errors.count, "error") %> prevented this record from being saved:</h2>
+  <ul>
+  <% @recipe.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= f.label "Name:" %>
+<%= f.text_field :name %><br>
+<%= f.hidden_field :user_id, value: @user.id %>
+
+<%= f.fields_for :ingredients do |ingredients_form| %>
+<%= ingredients_form.label "Quantity:" %>
+<%= ingredients_form.text_field :quantity %><br>
+
+<%= ingredients_form.fields_for :item do |item_form| %>
+ <%= item_form.label "Or create an item:" %>
+  <%= item_form.text_field :name %><br>
+<% end %>
+<%end%>
+
+<%= f.submit %><br>
+<%end%>
