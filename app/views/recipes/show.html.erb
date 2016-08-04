@@ -3,3 +3,5 @@
 <% @recipe.ingredients.each do |i| %>
 Item: <%= i.item.name %> Quantity: <%= i.quantity%> <br>
 <%end%>
+
+<p><%=link_to "Add Ingredients", new_recipe_ingredient_path(@recipe) %>
