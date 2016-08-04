@@ -4,6 +4,8 @@
 Item: <%= i.item.name %> Quantity: <%= i.quantity%> <br>
 <%end%>
 
+<%if @recipe.user_id == current_user.id%>
 <p><%=link_to "Add Ingredients", new_recipe_ingredient_path(@recipe) %>
 <p><%=link_to "Edit Recipe", edit_recipe_path(@recipe) %>
 <p><%=link_to "Delete Recipe", recipe_path(@recipe), :method => :delete %>
+<%end%>
