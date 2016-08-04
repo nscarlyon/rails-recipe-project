@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     resources :ingredients, only: [:new, :create]
   end
 
+  post 'recipes/:id/ingredients/new', to: 'ingredients#create'
   get 'users/most_recipes', to: 'users#show'
 end
