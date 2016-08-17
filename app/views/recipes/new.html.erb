@@ -12,8 +12,10 @@
 </div>
 <% end %>
 
-<%= f.label "Name:" %>
-<%= f.text_field :name %><br>
+<%= f.label "Title:" %>
+<%= f.text_field :name %>
+<p><%= f.label "Content:" %></p>
+<%= f.text_area :content %><br>
 <%= f.hidden_field :user_id, value: @user.id %>
 
 <%= render :partial => 'form', :locals => {:f => f, recipe: @recipe} %>

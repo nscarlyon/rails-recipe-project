@@ -2,7 +2,7 @@ class Ingredient < ApplicationRecord
   belongs_to :item
   belongs_to :recipe
 
-  validates :quantity
+  validates :quantity, presence: true
 
   def item_attributes=(item_attributes)
     item_attributes.values.each do |item_attribute|

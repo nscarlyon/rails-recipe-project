@@ -61,8 +61,8 @@ end
   end
 
   def recipe_params
-   params.require(:recipe).permit(:name, :user_id,
-   ingredients_attributes: [:id, :quantity, item_attributes: [:name]])
+   params.require(:recipe).permit(:name, :user_id, :content,
+   ingredients_attributes: [:id, :quantity, :unit, item_attributes: [:name]])
   end
 
 end
