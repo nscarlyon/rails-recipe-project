@@ -19,14 +19,22 @@
 <%= f.hidden_field :user_id, value: @user.id %>
 
 <%= render :partial => 'form', :locals => {:f => f, recipe: @recipe} %>
-<div id="name"></div>
-<div id="quantity"></div>
-<div id="unit"></div>
+<div id="items"></div>
+
+<a href="#" class="js-more" data-id="0">Add Item</a>
+<a href="#" class="js-remove">Remove Item</a>
 
 <p><%= f.submit %></p>
 <%end%>
 
-<button class="js-more" data-id="0">Add Item</button>
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-remove").on("click", function() {
+    var item = document.getElementById("items");
+      item.removeChild(item.lastChild);
+  });
+});
+</script>
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
@@ -48,12 +56,11 @@
       inputUnit.type = "text";
       inputUnit.id = "recipe_ingredients_attributes_1_unit";
 
-      $("#name").html("Item Name: ");
-      $("#name").append(inputName);
-      $("#quantity").html("Quantity: ");
-      $("#quantity").append(inputQuantity);
-      $("#unit").html("Unit: ");
-      $("#unit").append(inputUnit);
+      var itemDiv = document.createElement("div");
+      itemDiv.id = id;
+      $('#items').append(itemDiv);
+      $(`div #${id}`).append("Item Name:", inputName, "Quantity:", inputQuantity, "Unit:", inputUnit);
+
     });
   });
 </script>
