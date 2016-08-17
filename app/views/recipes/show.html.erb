@@ -6,7 +6,7 @@
 
 <h3>Ingredients List</h3>
 <% @recipe.ingredients.each do |i| %>
-  Item: <%= i.item.name %> Quantity: <%= i.quantity%> Unit: <%= i.unit %><br>
+  Item: <%= i.item.name %> Quantity: <%= i.quantity%> <%= i.unit %><br>
 <%end%>
 
 <%if @recipe.user_id == current_user.id%>
