@@ -1,15 +1,18 @@
 <h1><%= @recipe.name %></h1>
-<p>Find me in app/views/ingredients/new.html.erb</p>
 
 <%= form_for @recipe.ingredients.build, url: recipe_ingredients_path do |f| %>
-<%= f.label "Quantity:" %>
-<%= f.text_field :quantity %><br>
+
 <%= f.hidden_field :recipe_id, value: @recipe.id %>
 
 <%= f.fields_for :item, @recipe.ingredients.build.build_item do |item_form| %>
- <%= item_form.label "Or create an item:" %>
-  <%= item_form.text_field :name %><br>
+<p>
+ <%= item_form.label "Item:" %>
+  <%= item_form.text_field :name %>
+  <%= f.label "Quantity:" %>
+  <%= f.text_field :quantity %>
+  <%= f.label "Unit:" %>
+  <%= f.text_field :unit %><br>
 <% end %>
-
+</p>
 <%= f.submit %><br>
 <%end%>
