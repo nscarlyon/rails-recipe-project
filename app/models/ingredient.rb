@@ -2,7 +2,8 @@ class Ingredient < ApplicationRecord
   belongs_to :item
   belongs_to :recipe
 
-  validates :quantity, presence: true
+  validates :quantity, format: { with: /\d/,
+    message: "only allows numbers" }
 
   def item_attributes=(item_attributes)
     item_attributes.values.each do |item_attribute|
