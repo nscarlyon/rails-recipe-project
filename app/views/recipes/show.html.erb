@@ -1,7 +1,10 @@
 <h1><%= @recipe.name %></h1>
 
-<h3>Ingredients List</h3>
+<h3>Instructions</h3>
+<%= @recipe.content %>
 
+
+<h3>Ingredients List</h3>
 <% @recipe.ingredients.each do |i| %>
   Item: <%= i.item.name %> Quantity: <%= i.quantity%> Unit: <%= i.unit %><br>
 <%end%>
