@@ -1,4 +1,3 @@
-<%3.times do |x|%>
 
 <br>
 <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_form| %>
@@ -11,7 +10,6 @@
 <%= ingredients_form.label "Unit:" %>
 <%= ingredients_form.text_field :unit %>
 <br>
-
-<%end%>
+  
 <%end%>
 <%end%>
