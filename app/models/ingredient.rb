@@ -3,7 +3,7 @@ class Ingredient < ApplicationRecord
   belongs_to :recipe
 
   validates :quantity, format: { with: /\d/,
-    message: "only allows numbers" }
+    message: "only allows numbers" }, allow_blank: true
 
   def item_attributes=(item_attributes)
     item_attributes.values.each do |item_attribute|
