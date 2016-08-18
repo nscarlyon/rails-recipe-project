@@ -3,10 +3,14 @@
 <h3>Instructions</h3>
 <%= @recipe.content %>
 
-
 <h3>Ingredients List</h3>
 <% @recipe.ingredients.each do |i| %>
   Item: <%= i.item.name %> Quantity: <%= i.quantity%> <%= i.unit %><br>
+<%end%>
+
+<h3>Comments</h3>
+<% @recipe.comments.each do |c| %>
+  <%= c.content %> ~by <%= User.find(c.user_id).email %>
 <%end%>
 
 <%if @recipe.user_id == current_user.id%>
