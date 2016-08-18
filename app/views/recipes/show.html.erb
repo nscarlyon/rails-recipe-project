@@ -10,11 +10,12 @@
 
 <h3>Comments</h3>
 <% @recipe.comments.each do |c| %>
-  <%= c.content %> ~by <%= User.find(c.user_id).email %>
+  <p><%= c.content %> ~by <strong><%= User.find(c.user_id).email %></strong></p>
 <%end%>
 
-<%if @recipe.user_id == current_user.id%>
 <p><%=link_to "Add Comments", new_recipe_comment_path(@recipe) %>
+
+<%if @recipe.user_id == current_user.id%>
 <p><%=link_to "Edit Recipe", edit_recipe_path(@recipe) %>
 <p><%=link_to "Delete Recipe", recipe_path(@recipe), :method => :delete %>
 <%end%>
