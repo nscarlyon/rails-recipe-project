@@ -12,7 +12,7 @@
 <% @recipe.comments.each do |c| %>
   <p><%= c.content %> ~by <strong><%= User.find(c.user_id).email %></strong> <br>
      <%=link_to "Edit Comment", edit_recipe_comment_path(c) %><br>
-     <%=link_to "Delete Comment", recipe_comment_path(c), :method => :delete %>
+     <%=link_to "Delete Comment", recipe_comment_path(@recipe, c), :method => :delete %>
   </p>
 <%end%>
 
