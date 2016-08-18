@@ -19,6 +19,16 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:recipe_id])
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:recipe_id])
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
+    @comment.save
+    redirect_to @recipe
   end
 
   private
