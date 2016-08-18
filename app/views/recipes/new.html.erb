@@ -19,7 +19,9 @@
 <%= f.hidden_field :user_id, value: @user.id %>
 
 <%= render :partial => 'form', :locals => {:f => f, recipe: @recipe} %>
-<div id="items"></div>
+<div id="items">
+
+</div>
 
 <a href="#" class="js-more" data-id="0">Add Item</a>
 <a href="#" class="js-remove">Remove Item</a>
@@ -39,28 +41,28 @@ $(function() {
 <script type="text/javascript" charset="utf-8">
   $(function() {
     $(".js-more").on("click", function() {
-      var id = $(this).data("id") + 1;
-      var itemLabel = "<label>" + "Label Here" + "</label>"
+
+      var id = parseInt($(".js-more").attr("data-id")) + 1;
       var inputName = document.createElement("input");
-      inputName.name = "recipe[ingredients_attributes][1][item_attributes][name]"
+      inputName.name = `recipe[ingredients_attributes][${id}][item_attributes][name]`;
       inputName.type = "text";
-      inputName.id = "recipe_ingredients_attributes_1_item_attributes_name"
+      inputName.id = `recipe_ingredients_attributes_${id}_item_attributes_name`;
 
       var inputQuantity = document.createElement("input");
-      inputQuantity.name = "recipe[ingredients_attributes][1][quantity]";
+      inputQuantity.name = `recipe[ingredients_attributes][${id}][quantity]`;
       inputQuantity.type = "text";
-      inputQuantity.id = "recipe_ingredients_attributes_1_quantity";
+      inputQuantity.id = `recipe_ingredients_attributes_${id}_quantity`;
 
       var inputUnit = document.createElement("input");
-      inputUnit.name = "recipe[ingredients_attributes][1][unit]";
+      inputUnit.name = `recipe[ingredients_attributes][${id}][unit]`;
       inputUnit.type = "text";
-      inputUnit.id = "recipe_ingredients_attributes_1_unit";
+      inputUnit.id = `recipe_ingredients_attributes_${id}_unit`;
 
       var itemDiv = document.createElement("div");
       itemDiv.id = id;
       $('#items').append(itemDiv);
       $(`div #${id}`).append("Item Name:", inputName, "Quantity:", inputQuantity, "Unit:", inputUnit);
-
+      $(".js-more").attr("data-id", id);
     });
   });
 </script>
