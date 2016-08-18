@@ -7,10 +7,15 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @recipe = Recipe.find(params[:recipe_id])
-    @recipe.comments << @comment
-    @recipe.save
-    @comment.save
-    redirect_to @recipe, alert: "Comment successfully added."
+
+    if @comment.valid?
+      @recipe.comments << @comment
+      @recipe.save
+      @comment.save
+      redirect_to @recipe, alert: "Comment successfully added."
+    else
+      render :new
+    end
   end
 
   def edit
