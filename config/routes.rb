@@ -12,6 +12,5 @@ Rails.application.routes.draw do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
   end
 
-  post 'recipes/:id/ingredients/new', to: 'ingredients#create'
   get 'users/most_recipes', to: 'users#show'
 end
