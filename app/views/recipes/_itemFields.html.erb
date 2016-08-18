@@ -12,7 +12,7 @@ $(function() {
   $(function() {
     $(".js-more").on("click", function() {
 
-      var id = parseInt($(".js-more").attr("data-id")) + 1;
+      var id = parseInt($("div.item:last-of-type").attr("id")) + 1;
       var inputName = document.createElement("input");
       inputName.name = `recipe[ingredients_attributes][${id}][item_attributes][name]`;
       inputName.type = "text";
@@ -31,6 +31,7 @@ $(function() {
       var itemDiv = document.createElement("div");
       itemDiv.id = id;
       $('#items').append(itemDiv);
+      $(`div #${id}`).addClass("item");
       $(`div #${id}`).append("Item Name:", inputName, "Quantity:", inputQuantity, "Unit:", inputUnit);
       $(".js-more").attr("data-id", id);
     });
