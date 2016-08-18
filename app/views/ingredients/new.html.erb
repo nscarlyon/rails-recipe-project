@@ -2,11 +2,11 @@
 
 <%= form_for @recipe.ingredients.build, url: recipe_ingredients_path do |f| %>
 
-<% if @recipe.errors.any? %>
+<% if @ingredient.errors.any? %>
 <div class="error_explanation">
-  <h2><%= pluralize(@recipe.errors.count, "error") %> prevented this record from being saved:</h2>
+  <h2><%= pluralize(@ingredient.errors.count, "error") %> prevented this record from being saved:</h2>
   <ul>
-  <% @recipe.errors.full_messages.each do |msg| %>
+  <% @ingredient.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
   <% end %>
   </ul>
