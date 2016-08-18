@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 
   resources :recipes do
-    resources :comments, only: [:new, :create, :edit, :update]
+    resources :comments, only: [:new, :create, :edit, :update, :destroy]
   end
 
   post 'recipes/:id/ingredients/new', to: 'ingredients#create'
