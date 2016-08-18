@@ -1,3 +1,22 @@
+<%= form_for @recipe do |f|%>
+
+<% if @recipe.errors.any? %>
+<div class="error_explanation">
+  <h2><%= pluralize(@recipe.errors.count, "error") %> prevented this record from being saved:</h2>
+  <ul>
+  <% @recipe.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= f.label "Title:" %>
+<%= f.text_field :name %>
+<p><%= f.label "Content:" %></p>
+<%= f.text_area :content %><br>
+<%= f.hidden_field :user_id, value: @user.id %>
+
 
 <br>
 <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_form| %>
@@ -10,6 +29,54 @@
 <%= ingredients_form.label "Unit:" %>
 <%= ingredients_form.text_field :unit %>
 <br>
-  
+
 <%end%>
 <%end%>
+
+<div id="items">
+
+</div>
+
+<a href="#" class="js-more" data-id="0">Add Item</a>
+<a href="#" class="js-remove">Remove Item</a>
+
+<p><%= f.submit %></p>
+<%end%>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-remove").on("click", function() {
+    var item = document.getElementById("items");
+      item.removeChild(item.lastChild);
+  });
+});
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $(".js-more").on("click", function() {
+
+      var id = parseInt($(".js-more").attr("data-id")) + 1;
+      var inputName = document.createElement("input");
+      inputName.name = `recipe[ingredients_attributes][${id}][item_attributes][name]`;
+      inputName.type = "text";
+      inputName.id = `recipe_ingredients_attributes_${id}_item_attributes_name`;
+
+      var inputQuantity = document.createElement("input");
+      inputQuantity.name = `recipe[ingredients_attributes][${id}][quantity]`;
+      inputQuantity.type = "text";
+      inputQuantity.id = `recipe_ingredients_attributes_${id}_quantity`;
+
+      var inputUnit = document.createElement("input");
+      inputUnit.name = `recipe[ingredients_attributes][${id}][unit]`;
+      inputUnit.type = "text";
+      inputUnit.id = `recipe_ingredients_attributes_${id}_unit`;
+
+      var itemDiv = document.createElement("div");
+      itemDiv.id = id;
+      $('#items').append(itemDiv);
+      $(`div #${id}`).append("Item Name:", inputName, "Quantity:", inputQuantity, "Unit:", inputUnit);
+      $(".js-more").attr("data-id", id);
+    });
+  });
+</script>
