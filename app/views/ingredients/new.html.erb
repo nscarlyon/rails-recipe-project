@@ -2,6 +2,17 @@
 
 <%= form_for @recipe.ingredients.build, url: recipe_ingredients_path do |f| %>
 
+<% if @recipe.errors.any? %>
+<div class="error_explanation">
+  <h2><%= pluralize(@recipe.errors.count, "error") %> prevented this record from being saved:</h2>
+  <ul>
+  <% @recipe.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
 <%= f.hidden_field :recipe_id, value: @recipe.id %>
 
 <%= f.fields_for :item, @recipe.ingredients.build.build_item do |item_form| %>
