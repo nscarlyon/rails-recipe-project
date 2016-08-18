@@ -2,16 +2,7 @@
 
 <%= form_for @recipe do |f|%>
 
-<% if @recipe.errors.any? %>
-<div class="error_explanation">
-  <h2><%= pluralize(@recipe.errors.count, "error") %> prevented this record from being saved:</h2>
-  <ul>
-  <% @recipe.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-  </ul>
-</div>
-<% end %>
+<%= render partial: 'errors', locals: {:object => @recipe} %>
 
 <%= f.label "Title:" %>
 <%= f.text_field :name %><br>

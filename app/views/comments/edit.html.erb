@@ -1,15 +1,6 @@
 <%= form_for @comment, url: recipe_comment_path do |f| %>
 
-<% if @comment.errors.any? %>
-<div class="error_explanation">
-  <h2><%= pluralize(@comment.errors.count, "error") %> prevented this record from being saved:</h2>
-  <ul>
-  <% @comment.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-  </ul>
-</div>
-<% end %>
+<%= render partial: 'recipes/errors', locals: {:object => @comment} %>
 
 <%= render partial: 'form', locals: {:f => f} %>
 <%end%>
