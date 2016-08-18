@@ -23,8 +23,18 @@
   <%= f.text_field :quantity %>
   <%= f.label "Unit:" %>
   <%= f.text_field :unit %><br>
-<% end %>
 </p>
+
+<p>
+ <%= item_form.label "Item:" %>
+  <%= item_form.text_field :name[] %>
+  <%= f.label "Quantity:" %>
+  <%= f.text_field :quantity[] %>
+  <%= f.label "Unit:" %>
+  <%= f.text_field :unit[] %><br>
+</p>
+
+<% end %>
 
 <div id="items">
 
