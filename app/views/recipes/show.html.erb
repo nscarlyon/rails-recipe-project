@@ -13,7 +13,7 @@
   <p><%= c.content %> ~by <strong><%= User.find(c.user_id).email %></strong> <br>
 
     <%if c.user_id == current_user.id %>
-     <%=link_to "Edit Comment", edit_recipe_comment_path(c) %><br>
+     <%=link_to "Edit Comment", edit_recipe_comment_path(@recipe, c) %><br>
      <%=link_to "Delete Comment", recipe_comment_path(@recipe, c), :method => :delete %>
     <%end%>
   </p>
