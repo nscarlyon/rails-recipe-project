@@ -43,8 +43,12 @@ end
   end
 
   def update
-     @recipe.update(recipe_params)
-     redirect_to @recipe
+     if @recipe.valid?
+       @recipe.update(recipe_params)
+       redirect_to @recipe, alert: "Recipe successfully updated."
+     else
+       render :edit
+     end
   end
 
   def destroy
