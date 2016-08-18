@@ -25,5 +25,14 @@
 <%end%>
 <%end%>
 
+<div id="items">
+
+</div>
+
+<button class="js-more" data-id="0" type="button">Add Item</button>
+<button class="js-remove" type="button">Remove Item</button>
+
 <p><%= f.submit %></p>
 <%end%>
+
+<%= render partial: 'itemFields' %>
