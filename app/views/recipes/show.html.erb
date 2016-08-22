@@ -25,3 +25,5 @@
   <p><%=link_to "Edit Recipe", edit_recipe_path(@recipe) %>
   <p><%=link_to "Delete Recipe", recipe_path(@recipe), :method => :delete %>
 <%end%>
+
+<button class= "js-next" data-id="<%=@recipe.id%>" type="button">Next Recipe</button>
