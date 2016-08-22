@@ -38,10 +38,15 @@
     $(".js-next").on("click", function() {
       var nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.get("/recipes/" + nextId + ".json", function(data) {
-        $(".name").text(data["name"]);
-        $(".content").text(data["content"]);
-        $(".ingredients").text(data["ingredients"]);
-        $(".js-next").attr("data-id", data["id"]);
+        var recipe = data["recipe"]
+        $(".name").text(recipe["name"]);
+        $(".content").text(recipe["content"]);
+
+        recipe["ingredients"].forEach(function(i) {
+          $(".ingredients").text(i);
+        })
+
+        $(".js-next").attr("data-id", recipe["id"]);
       });
     });
   });
