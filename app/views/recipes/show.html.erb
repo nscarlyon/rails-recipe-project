@@ -41,9 +41,10 @@
         var recipe = data["recipe"]
         $(".name").text(recipe["name"]);
         $(".content").text(recipe["content"]);
-
+        $(".ingredients").text("");
         recipe["ingredients"].forEach(function(i) {
-          $(".ingredients").text(i["item"]["name"] + i["quantity"] + i["unit"]);
+          var ingredientsText = "Item: " + i["item"]["name"] + " Quantity: " + i["quantity"] + " " + i["unit"] + "<br>"
+          $(".ingredients").append(ingredientsText);
         })
 
         $(".js-next").attr("data-id", recipe["id"]);
