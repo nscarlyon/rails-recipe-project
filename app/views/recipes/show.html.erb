@@ -48,13 +48,14 @@
           var ingredientsText = "Item: " + i["item"]["name"] + " Quantity: " + i["quantity"] + " " + i["unit"] + "<br>"
           $(".ingredients").append(ingredientsText);
         })
-        debugger;
+
         recipe["comments"].forEach(function(c) {
           var commentText = "<p>"
           commentText += c.content
-
+          commentText += "~by <strong>" + c.user.email + "</strong> <br>"
           commentText += "</p>"
           $(".comments").append(commentText);
+          debugger;
         })
 
 
