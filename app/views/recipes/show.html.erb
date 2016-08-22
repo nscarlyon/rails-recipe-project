@@ -33,5 +33,16 @@
 
 <button class= "js-next" data-id="<%=@recipe.id%>" type="button">Next Recipe</button>
 
-
 <script type="text/javascript" charset="utf-8">
+  $(function () {
+    $(".js-next").on("click", function() {
+      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+      $.get("/recipes/" + nextId + ".json", function(data) {
+        $(".name").text(data["name"]);
+        $(".content").text(data["content"]);
+        $(".ingredients").text(data["ingredients"]);
+        $(".js-next").attr("data-id", data["id"]);
+      });
+    });
+  });
+</script>
