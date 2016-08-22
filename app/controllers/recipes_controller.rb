@@ -25,6 +25,7 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
 
     if @recipe.valid?
       @recipe.save
+      @user.recipes << @recipe
       redirect_to @recipe, notice: "Recipe successfully created."
     else
       @user = current_user

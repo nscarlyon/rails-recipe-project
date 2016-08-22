@@ -9,7 +9,6 @@
 <%= f.text_area :content %><br>
 <%= f.hidden_field :user_id, value: @user.id %>
 
-
 <br>
 <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_form| %>
 
