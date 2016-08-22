@@ -42,10 +42,22 @@
         $(".name").text(recipe["name"]);
         $(".content").text(recipe["content"]);
         $(".ingredients").text("");
+        $(".comments").text("");
+
         recipe["ingredients"].forEach(function(i) {
           var ingredientsText = "Item: " + i["item"]["name"] + " Quantity: " + i["quantity"] + " " + i["unit"] + "<br>"
           $(".ingredients").append(ingredientsText);
         })
+        debugger;
+        recipe["comments"].forEach(function(c) {
+          var commentText = "<p>"
+          commentText += c.content
+
+          commentText += "</p>"
+          $(".comments").append(commentText);
+        })
+
+
 
         $(".js-next").attr("data-id", recipe["id"]);
       });
