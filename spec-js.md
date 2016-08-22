@@ -2,9 +2,11 @@
 
 Specs:
 - [x] Use jQuery for implementing new requirements
-- [ ] Include a show page rendered using jQuery and an Active Model Serialization JSON backend.
+- [x] Include a show page rendered using jQuery and an Active Model Serialization JSON backend.
+      *The app includes a comment, ingredient, and recipe serializer. I used jQuery to get the recipe JSON data and displayed some of the data on the show page.*
 - [ ] Include an index page rendered using jQuery and an Active Model Serialization JSON backend.
-- [ ] Include at least one has_many relationship in information rendered via JSON
+- [x] Include at least one has_many relationship in information rendered via JSON
+        *Recipe has many ingredients and comments. You can see this data rendered via JSON.*
 - [ ] Include at least one link that loads or updates a resource without reloading the page
 - [ ] Include at least one create form that using Rails API that renders the response without reloading the page
 - [ ] Translate JSON responses into js model objects
