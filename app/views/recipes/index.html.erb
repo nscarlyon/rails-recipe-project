@@ -1,9 +1,16 @@
 <h1>Recipes#index</h1>
 
-<%@recipes.each do |r|%>
-<%= link_to r.name, recipe_path(r) %>
+<%@recipes.each do |recipe|%>
+<%= link_to recipe.name, recipe_path(recipe) %>
+<div id="recipe-<%= recipe.id %>"><%= truncate(recipe.content) %></div>
+<button class = "js-more" data-id = "<%= recipe.id %>">More Info</button>
+<ul id="recipe-<%=recipe.id%>-comments"> </ul>
 <%end%>
 
 <%if @user == current_user %>
 <p><%= link_to "Add New Recipe", new_recipe_path(current_user) %></p>
 <%end%>
+
+<script type = "text/javascript" charset = "utf-8">
+
+</script>
