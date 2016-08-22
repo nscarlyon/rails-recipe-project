@@ -37,6 +37,7 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
       redirect_to user_recipes_path(current_user), alert: "Recipe not found"
     end
 
+    @ingredients = @recipe.ingredients
     respond_to do |format|
       format.html {render :show}
       format.json {render json: @recipe}

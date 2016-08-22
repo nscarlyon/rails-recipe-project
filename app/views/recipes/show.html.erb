@@ -6,7 +6,7 @@
 <h3>Ingredients List</h3>
 <div class = "ingredients">
 
-<% @recipe.ingredients.each do |i| %>
+<% @ingredients.each do |i| %>
   Item: <%= i.item.name %> Quantity: <%= i.quantity%> <%= i.unit %><br>
 <%end%>
 </div>
@@ -43,7 +43,7 @@
         $(".content").text(recipe["content"]);
 
         recipe["ingredients"].forEach(function(i) {
-          $(".ingredients").text(i);
+          $(".ingredients").text(i["item"]["name"] + i["quantity"] + i["unit"]);
         })
 
         $(".js-next").attr("data-id", recipe["id"]);
