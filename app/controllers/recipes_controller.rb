@@ -9,6 +9,11 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
           redirect_to home_path, alert: "User not found"
         else
           @recipes = @user.recipes
+
+          respond_to do |format|
+            format.html {render :index}
+            format.json {render json: @recipes}
+          end
         end
     else
         @recipes = Recipe.all
