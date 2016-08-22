@@ -37,8 +37,11 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
       redirect_to user_recipes_path(current_user), alert: "Recipe not found"
     end
 
-    
-end
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @recipe}
+    end
+  end
 
   def edit
     @user = User.find(@recipe.user_id)
