@@ -6,7 +6,7 @@
 <h3>Ingredients List</h3>
 <div class = "ingredients">
 
-<% @ingredients.each do |i| %>
+<% @recipe.ingredients.each do |i| %>
   Item: <%= i.item.name %> Quantity: <%= i.quantity%> <%= i.unit %><br>
 <%end%>
 </div>
