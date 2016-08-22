@@ -31,7 +31,7 @@
   <p><%=link_to "Delete Recipe", recipe_path(@recipe), :method => :delete %>
 <%end%>
 
-<button class= "js-next" data-id="<%=@recipe.id%>" type="button">Next Recipe</button>
+<p><button class= "js-next" data-id="<%=@recipe.id%>" type="button">Next Recipe</button></p>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
