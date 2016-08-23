@@ -5,6 +5,9 @@ function Recipe(attributes) {
   this.ingredients = attributes.ingredients;
 }
 
+Recipe.templateSource = $('#recipe-template').html()
+Recipe.template = Handlebars.compile(templateSource);
+
 Recipe.prototype.renderDisplay = function() {
 
 }
