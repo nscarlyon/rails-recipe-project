@@ -7,6 +7,9 @@ $(function () {
     var posting = $.post(action, params);
 
       posting.success(function(data) {
+        var recipe = new Recipe(data);
+        var recipeShow = recipe.renderShow()
+
         var recipe = data["recipe"];
         $("#recipeName").text(recipe["name"]);
         $("#recipeContent").text(recipe["content"])
