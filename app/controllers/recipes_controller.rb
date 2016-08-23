@@ -31,7 +31,7 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
     if @recipe.valid?
       @recipe.save
       respond_to do |format|
-        format.html {render @recipe}
+        format.html {redirect_to @recipe}
         format.json {render json: @recipes}
       end
     else
