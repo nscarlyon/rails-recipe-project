@@ -28,6 +28,14 @@ $(function() {
         $("#recipe-" + id + "-ingredients").append(ingredientsText);
       })
 
+      recipe["comments"].forEach(function(c) {
+        var commentText = "<p>"
+        commentText += c.content
+        commentText += "~by <strong>" + c.user.email + "</strong> <br>"
+        commentText += "</p>"
+        $("#recipe-" + id + "-comments").append(commentText);
+      })
+
     });
   });
 });
