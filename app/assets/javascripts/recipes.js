@@ -5,8 +5,10 @@ function Recipe(attributes) {
   this.ingredients = attributes.ingredients;
 }
 
-Recipe.templateSource = $('#recipe-template').html()
-Recipe.template = Handlebars.compile(Recipe.templateSource);
+$(function() {
+  Recipe.templateSource = $('#recipe-template').html()
+  Recipe.template = Handlebars.compile(Recipe.templateSource);
+})
 
 Recipe.prototype.renderDisplay = function() {
 
