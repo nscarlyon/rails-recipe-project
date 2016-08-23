@@ -4,8 +4,12 @@ $(function () {
     var $form = $(this);
     var action = $form.attr("action");
     var params = $form.serialize();
+    var posting = $.post(action, params);
 
-
-    debugger;
+      posting.done(function(data) {
+        var recipe = data["recipe"];
+        $("#recipeName").text(recipe["name"]);
+        $("#recipeContent").text(recipe["content"])
+      });
     });
   });
