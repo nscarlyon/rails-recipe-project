@@ -6,10 +6,12 @@ $(function () {
     var params = $form.serialize();
     var posting = $.post(action, params);
 
-      posting.done(function(data) {
+      posting.success(function(data) {
         var recipe = data["recipe"];
         $("#recipeName").text(recipe["name"]);
         $("#recipeContent").text(recipe["content"])
-      });
+      }) .error(function(response) {
+          console.log("Error!", response)
+      })
     });
   });
