@@ -6,7 +6,7 @@ function Recipe(attributes) {
 }
 
 Recipe.templateSource = $('#recipe-template').html()
-Recipe.template = Handlebars.compile(templateSource);
+Recipe.template = Handlebars.compile(Recipe.templateSource);
 
 Recipe.prototype.renderDisplay = function() {
 
