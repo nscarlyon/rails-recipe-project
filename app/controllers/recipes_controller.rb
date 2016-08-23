@@ -31,8 +31,8 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
     if @recipe.valid?
       @recipe.save
       respond_to do |format|
+        format.json {render json: @recipe}
         format.html {redirect_to @recipe}
-        format.json {render json: @recipes}
       end
     else
       @user = current_user
