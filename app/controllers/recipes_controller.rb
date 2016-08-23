@@ -29,8 +29,7 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
     @recipe = Recipe.new(recipe_params)
 
     if @recipe.valid?
-      @recipe.save
-      redirect_to @recipe, notice: "Recipe successfully created."
+      render json: @recipe, status: 201
     else
       @user = current_user
       render action: 'new'
