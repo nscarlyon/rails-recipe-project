@@ -3,9 +3,11 @@
 <%@recipes.each do |recipe|%>
 <%= link_to recipe.name, recipe_path(recipe) %>
 <div id="recipe-<%= recipe.id %>"><%= truncate(recipe.content) %></div>
-<button class = "js-more" data-id = "<%= recipe.id %>">More Info</button>
+
 <div id="recipe-<%=recipe.id%>-ingredients"></div>
 <div id="recipe-<%=recipe.id%>-comments"> </div>
+
+<button class = "js-more" data-id = "<%= recipe.id %>">More Info</button>
 <%end%>
 
 <%if @user == current_user %>
@@ -20,6 +22,11 @@ $(function() {
     $.get("/recipes/" + id + ".json", function(data) {
       var recipe = data["recipe"]
       $('#recipe-' + id).text(recipe["content"])
+
+      recipe["ingredients"].forEach(function(i) {
+        var ingredientsText = "Item: " + i["item"]["name"] + " Quantity: " + i["quantity"] + " " + i["unit"] + "<br>"
+        $("#recipe-" + id + "-ingredients").append(ingredientsText);
+      })
 
     });
   });
