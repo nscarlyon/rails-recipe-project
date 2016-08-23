@@ -1,7 +1,11 @@
 $(function () {
-  $('form').submit(function(event) {
+  $('form#new_recipe').submit(function(event) {
     event.preventDefault();
-    console.log("Hello!")
+    var $form = $(this);
+    var action = $form.attr("action");
+    var params = $form.serialize();
+
+
+    debugger;
     });
   });
-})
