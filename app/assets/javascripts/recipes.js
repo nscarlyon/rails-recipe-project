@@ -4,12 +4,20 @@ $(function () {
     var $form = $(this);
     var action = $form.attr("action");
     var params = $form.serialize();
-    var posting = $.post(action, params);
-
-      posting.done(function(data) {
+    debugger;
+    $.ajax({
+        url: action,
+        method: "POST",
+        dataType: "json",
+        data: params,
+      })
+      .success(function(data) {
         var recipe = data["recipe"];
         $("#recipeName").text(recipe["name"]);
         $("#recipeContent").text(recipe["content"])
+      })
+      .error(function(response) {
+        console.log("Something Broke", response)
+      })
       });
     });
-  });
