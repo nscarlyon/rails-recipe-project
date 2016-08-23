@@ -21,7 +21,7 @@ $(function() {
 
     $.get("/recipes/" + id + ".json", function(data) {
       var recipe = data["recipe"]
-      $('#recipe-' + id).html("<p>" + recipe["content"] + "</p>")
+      $('#recipe-' + id).html("<p>Content: " + recipe["content"] + "</p>")
 
       recipe["ingredients"].forEach(function(i) {
         var ingredientsText = "Item: " + i["item"]["name"] + " Quantity: " + i["quantity"] + " " + i["unit"] + "<br>"
