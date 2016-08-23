@@ -35,6 +35,15 @@
 <p><%= f.submit %></p>
 <%end%>
 
+<script id="recipe-template" type="text/x-handlebars-template">
+  <div class="name">
+    <h1>{{name}}</h1>
+    <div class="content">
+      {{content}}
+    </div>
+  </div>
+</script>
+
 <div id ="recipeResult">
 <h3 id = "recipeName"></h3>
 <p id = "recipeContent"></p>
