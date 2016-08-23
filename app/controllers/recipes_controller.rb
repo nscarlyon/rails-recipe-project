@@ -29,6 +29,7 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
     @recipe = Recipe.new(recipe_params)
 
     if @recipe.valid?
+      @recipe.save
       render json: @recipe, status: 201
     else
       @user = current_user

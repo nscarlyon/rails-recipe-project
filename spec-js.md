@@ -8,7 +8,8 @@ Specs:
 *Created a recipes serializer. The index page renders multiple recipes using jQuery.*
 - [x] Include at least one has_many relationship in information rendered via JSON
         *Recipe has many ingredients and comments. You can see this data rendered via JSON.*
-- [ ] Include at least one link that loads or updates a resource without reloading the page
+- [x ] Include at least one link that loads or updates a resource without reloading the page
+      *The recipe new form creates a new recipe without reloading the page.*
 - [ ] Translate JSON responses into js model objects
 - [ ] At least one of the js model objects must have at least one method added by your code to the prototype
 
