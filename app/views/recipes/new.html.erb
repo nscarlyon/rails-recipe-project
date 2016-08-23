@@ -46,5 +46,11 @@
 $(function () {
   $('form').submit(function(event) {
     event.preventDefault();
+    var values = $(this).serialize();
+    var posting = $.post('/recipes', values);
+    posting.done(function(data) {
+
+    })
   })
 })
+</script>
