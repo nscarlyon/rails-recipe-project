@@ -4,7 +4,8 @@
 <%= link_to recipe.name, recipe_path(recipe) %>
 <div id="recipe-<%= recipe.id %>"><%= truncate(recipe.content) %></div>
 <button class = "js-more" data-id = "<%= recipe.id %>">More Info</button>
-<ul id="recipe-<%=recipe.id%>-comments"> </ul>
+<div id="recipe-<%=recipe.id%>-ingredients"></div>
+<div id="recipe-<%=recipe.id%>-comments"> </div>
 <%end%>
 
 <%if @user == current_user %>
@@ -19,7 +20,7 @@ $(function() {
     $.get("/recipes/" + id + ".json", function(data) {
       var recipe = data["recipe"]
       $('#recipe-' + id).text(recipe["content"])
-      
+
     });
   });
 });
