@@ -30,7 +30,10 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
 
     if @recipe.valid?
       @recipe.save
-      render json: @recipe, status: 201
+      respond_to do |format|
+        format.html {render @recipe}
+        format.json {render json: @recipes}
+      end
     else
       @user = current_user
       render action: 'new'
