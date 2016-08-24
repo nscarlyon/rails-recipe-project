@@ -39,15 +39,15 @@
 </div>
 
 <script id="recipe-template" type="text/x-handlebars-template">
-  <div class="name">
-    <h3>{{name}}</h3>
-  </div>
-  <div class="content">
+  <h2>{{name}}</h2>
+
+  <h3>Content</h3>
     <p>{{content}}</p>
-  </div>
-  <div class="ingredients">
-    <strong>Ingredients</strong> {{#list ingredients}}Item: {{item.name}} Quantity: {{quantity}} Unit: {{unit}}{{/list}}
-  </div>
+
+  <h3>Ingredients List</h3>
+    {{#list ingredients}}
+    <strong>Item:</strong> {{item.name}} <strong>Quantity:</strong> {{quantity}} <strong>Unit:</strong>
+    {{unit}}{{/list}}
 </script>
 
 <%= render partial: 'itemFields' %>

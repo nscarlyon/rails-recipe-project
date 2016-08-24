@@ -32,35 +32,3 @@
 <%end%>
 
 <p><button class= "js-next" data-id="<%=@recipe.id%>" type="button">Next Recipe</button></p>
-
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-    $(".js-next").on("click", function() {
-      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-      $.get("/recipes/" + nextId + ".json", function(data) {
-        var recipe = data["recipe"]
-        $(".name").text(recipe["name"]);
-        $(".content").text(recipe["content"]);
-        $(".ingredients").text("");
-        $(".comments").text("");
-        var recipeId = recipe["id"]
-        $(".commentLink").html(`<a href="/recipes/${recipeId}/comments/new">Add comment</a>`)
-
-        recipe["ingredients"].forEach(function(i) {
-          var ingredientsText = "Item: " + i["item"]["name"] + " Quantity: " + i["quantity"] + " " + i["unit"] + "<br>"
-          $(".ingredients").append(ingredientsText);
-        })
-
-        recipe["comments"].forEach(function(c) {
-          var commentText = "<p>"
-          commentText += c.content
-          commentText += "~by <strong>" + c.user.email + "</strong> <br>"
-          commentText += "</p>"
-          $(".comments").append(commentText);
-        })
-
-        $(".js-next").attr("data-id", recipe["id"]);
-      });
-    });
-  });
-</script>
