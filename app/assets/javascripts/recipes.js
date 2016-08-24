@@ -26,9 +26,6 @@ $(function () {
         var recipe = new Recipe(data);
         var recipeDisplay = recipe.renderDisplay()
 
-        var recipe = data["recipe"];
-        $("#recipeName").text(recipe["name"]);
-        $("#recipeContent").text(recipe["content"])
       }) .error(function(response) {
           console.log("Error!", response)
       })
