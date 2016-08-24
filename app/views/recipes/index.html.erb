@@ -13,30 +13,3 @@
 <%if @user == current_user %>
 <p><%= link_to "Add New Recipe", new_recipe_path(current_user) %></p>
 <%end%>
-
-<script type = "text/javascript" charset = "utf-8">
-$(function() {
-  $('.js-more').on("click", function() {
-    var id = $(this).data("id")
-
-    $.get("/recipes/" + id + ".json", function(data) {
-      var recipe = data["recipe"]
-      $('#recipe-' + id).html("<p>Content: " + recipe["content"] + "</p>")
-
-      recipe["ingredients"].forEach(function(i) {
-        var ingredientsText = "Item: " + i["item"]["name"] + " Quantity: " + i["quantity"] + " " + i["unit"] + "<br>"
-        $("#recipe-" + id + "-ingredients").append(ingredientsText);
-      })
-
-      recipe["comments"].forEach(function(c) {
-        var commentText = "<p>"
-        commentText += c.content
-        commentText += "~by <strong>" + c.user.email + "</strong> <br>"
-        commentText += "</p>"
-        $("#recipe-" + id + "-comments").append(commentText);
-      })
-
-    });
-  });
-});
-</script>
