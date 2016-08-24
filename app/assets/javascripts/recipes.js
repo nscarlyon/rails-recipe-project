@@ -63,15 +63,6 @@ Recipe.nextRecipe = function() {
         // $(".comments").text("");
         // var recipeId = recipe["id"]
         // $(".commentLink").html(`<a href="/recipes/${recipeId}/comments/new">Add comment</a>`)
-        //
-        //
-        // recipe["comments"].forEach(function(c) {
-        //   var commentText = "<p>"
-        //   commentText += c.content
-        //   commentText += "~by <strong>" + c.user.email + "</strong> <br>"
-        //   commentText += "</p>"
-        //   $(".comments").append(commentText);
-        // })
 
         $(".js-next").attr("data-id", recipe["id"]);
       });
