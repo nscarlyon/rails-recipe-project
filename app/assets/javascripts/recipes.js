@@ -22,6 +22,13 @@ Handlebars.registerHelper('list', function(ingredients, options) {
   return out + "</ul>";
 });
 
+Recipe.success = function(data) {
+  var recipe = new Recipe(data["recipe"]);
+  var recipeDisplay = recipe.renderDisplay()
+
+  $('#recipeResults').append(recipeDisplay)
+}
+
 $(function () {
   $('form#new_recipe').submit(function(event) {
     event.preventDefault();
@@ -30,11 +37,8 @@ $(function () {
     var params = $form.serialize();
     var posting = $.post(action, params);
 
-      posting.success(function(data) {
-        var recipe = new Recipe(data["recipe"]);
-        var recipeDisplay = recipe.renderDisplay()
+      posting.success(function(Recipe.success) {
 
-        $('#recipeResults').append(recipeDisplay)
       })
       .error(function(response) {
           console.log("Error!", response)
