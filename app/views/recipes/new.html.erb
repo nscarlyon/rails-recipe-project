@@ -46,7 +46,7 @@
     {{content}}
   </div>
   <div class="ingredients">
-    <strong>Item:</strong> {{item}} Quantity: {{quantity}} Unit: {{unit}}
+    <strong>Item:</strong> {{#list ingredients}} {{item}} Quantity: {{quantity}} Unit: {{unit}}{{/list}}
   </div>
 </script>
 
