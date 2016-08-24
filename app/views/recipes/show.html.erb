@@ -48,7 +48,9 @@
       <p><a href="{{@recipeId}}/comments/{{id}}/edit">Edit Comment</a></p>
     {{/if}}
 
-
+    <p><a href="/recipes/{{id}}/comments/new">Add Comment</a></p>
+    <p><a href="/recipes/{{id}}/edit">Edit Recipe</a></p>
+    <p><a rel="nofollow" href="/recipes/{{id}}" data-method="delete">Delete Recipe</a></p>
 </script>
 
 <p><button class= "js-next" data-id="<%=@recipe.id%>" type="button">Next Recipe</button></p>
