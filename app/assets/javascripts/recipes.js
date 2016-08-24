@@ -87,6 +87,7 @@ Recipe.nextRecipe = function() {
 
          var recipeId = data["recipe"]["id"]
         $(".commentLink").html(`<a href="/recipes/${recipeId}/comments/new">Add comment</a>`)
+        
         $(".js-next").attr("data-id", recipe["id"]);
       });
     }
