@@ -21,6 +21,14 @@
     <%end%>
   </p>
 <%end%>
+
+<p class = "commentLink"><%=link_to "Add Comment", new_recipe_comment_path(@recipe) %></p>
+
+<%if @recipe.user_id == current_user.id%>
+  <p><%=link_to "Edit Recipe", edit_recipe_path(@recipe) %>
+  <p><%=link_to "Delete Recipe", recipe_path(@recipe), :method => :delete %>
+<%end%>
+
 </div>
 
 <script id="recipe-template" type="text/x-handlebars-template">
@@ -39,13 +47,8 @@
     {{#if comments}}
       <p><a href="{{@recipeId}}/comments/{{id}}/edit">Edit Comment</a></p>
     {{/if}}
+
+
 </script>
-
-<p class = "commentLink"><%=link_to "Add Comment", new_recipe_comment_path(@recipe) %></p>
-
-<%if @recipe.user_id == current_user.id%>
-  <p class ="editRecipeLink"><%=link_to "Edit Recipe", edit_recipe_path(@recipe) %>
-  <p class ="deleteRecipeLink"><%=link_to "Delete Recipe", recipe_path(@recipe), :method => :delete %>
-<%end%>
 
 <p><button class= "js-next" data-id="<%=@recipe.id%>" type="button">Next Recipe</button></p>
