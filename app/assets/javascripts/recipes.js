@@ -22,7 +22,8 @@ $(function () {
     var posting = $.post(action, params);
 
       posting.success(function(data) {
-        var recipe = new Recipe(data);
+        debugger;
+        var recipe = new Recipe(data["recipe"]);
         var recipeDisplay = recipe.renderDisplay()
         $('#recipeResults').append(recipeDisplay)
 
