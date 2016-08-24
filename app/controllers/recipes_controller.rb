@@ -44,7 +44,7 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
     if @recipe.nil?
       redirect_to user_recipes_path(current_user), alert: "Recipe not found"
     end
-
+    @user = current_user
     respond_to do |format|
       format.html {render :show}
       format.json {render json: @recipe}
