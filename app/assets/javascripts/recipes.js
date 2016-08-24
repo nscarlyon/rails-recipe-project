@@ -33,15 +33,19 @@ Recipe.error = function(response) {
   console.log("Error!", response)
 }
 
-$(function () {
-  $('form#new_recipe').submit(function(event) {
-    event.preventDefault();
-    var $form = $(this);
-    var action = $form.attr("action");
-    var params = $form.serialize();
-    var posting = $.post(action, params);
+Recipe.formSubmit = function(event) {
 
-      posting.success(Recipe.success)
-      .error(Recipe.error)
-    });
+  event.preventDefault();
+  var $form = $(this);
+  var action = $form.attr("action");
+  var params = $form.serialize();
+  var posting = $.post(action, params);
+
+    posting.success(Recipe.success)
+    .error(Recipe.error)
+  }
+
+$(function () {
+  $('form#new_recipe').submit(Recipe.formSubmit)
+
   });
