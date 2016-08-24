@@ -63,14 +63,12 @@ Recipe.nextRecipe = function() {
         var recipeDisplay = recipe.renderDisplay()
         $('#recipeResults').html(recipeDisplay)
 
-         $(".comments").text("");
          var recipeId = data["recipe"]["id"]
         $(".commentLink").html(`<a href="/recipes/${recipeId}/comments/new">Add comment</a>`)
 
         $(".js-next").attr("data-id", recipe["id"]);
       });
     }
-
 
 Recipe.more = function() {
         var id = $(this).data("id")
@@ -80,7 +78,6 @@ Recipe.more = function() {
           var recipe = new Recipe(data["recipe"]);
           var recipeDisplay = recipe.renderDisplay()
           $('#recipeResults-' + id).html(recipeDisplay)
-
         })
       }
 
