@@ -2,12 +2,14 @@
 
 <%@recipes.each do |recipe|%>
 <%= link_to recipe.name, recipe_path(recipe) %>
+<div id = "recipeResults-<%=recipe.id%>">
 <div id="recipe-<%= recipe.id %>"><%= truncate(recipe.content) %></div>
 
 <div id="recipe-<%=recipe.id%>-ingredients"></div>
 <div id="recipe-<%=recipe.id%>-comments"> </div>
 
 <p><button class = "js-more" data-id = "<%= recipe.id %>">More Info</button></p>
+</div>
 <%end%>
 
 <%if @user == current_user %>

@@ -79,7 +79,7 @@ Recipe.more = function() {
           Recipe.setTemplate()
           var recipe = new Recipe(data["recipe"]);
           var recipeDisplay = recipe.renderDisplay()
-          $('#recipeResults').html(recipeDisplay)
+          $('#recipeResults-' + id).html(recipeDisplay)
 
           // var recipe = data["recipe"]
           // $('#recipe-' + id).html("<p>Content: " + recipe["content"] + "</p>")
