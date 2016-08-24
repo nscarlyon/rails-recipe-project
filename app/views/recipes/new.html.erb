@@ -35,14 +35,17 @@
 <p><%= f.submit %></p>
 <%end%>
 
+<div id="recipeResults">
+</div>
+
 <script id="recipe-template" type="text/x-handlebars-template">
   <div class="name">
     <h1>{{name}}</h1>
+  </div>
     <div class="content">
       {{content}}
     </div>
     <div class="ingredients"></div>
-  </div>
 </script>
 
 <%= render partial: 'itemFields' %>

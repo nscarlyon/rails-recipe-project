@@ -2,7 +2,6 @@ function Recipe(attributes) {
   this.name = attributes.name;
   this.content = attributes.content;
   this.id = attributes.id;
-  this.ingredients = attributes.ingredients;
 }
 
 $(function() {
@@ -25,6 +24,7 @@ $(function () {
       posting.success(function(data) {
         var recipe = new Recipe(data);
         var recipeDisplay = recipe.renderDisplay()
+        $('#recipeResults').append(recipeDisplay)
 
       }) .error(function(response) {
           console.log("Error!", response)
