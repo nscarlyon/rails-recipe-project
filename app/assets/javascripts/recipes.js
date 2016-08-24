@@ -10,12 +10,6 @@ $(function() {
   Recipe.template = Handlebars.compile(Recipe.templateSource);
 })
 
-Recipe.prototype.renderIngredients = function() {
-  this.ingredients.forEach(function(i) {
-    return Recipe.template(i)
-  })
-}
-
 Recipe.prototype.renderDisplay = function() {
   return Recipe.template(this)
 }
@@ -31,10 +25,8 @@ $(function () {
       posting.success(function(data) {
         var recipe = new Recipe(data["recipe"]);
         var recipeDisplay = recipe.renderDisplay()
-        var showIngredients = recipe.renderIngredients()
 
         $('#recipeResults').append(recipeDisplay)
-        $('#recipeResults').append(showIngredients)
       })
       .error(function(response) {
           console.log("Error!", response)
