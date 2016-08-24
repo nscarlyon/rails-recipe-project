@@ -10,6 +10,12 @@ $(function() {
   Recipe.template = Handlebars.compile(Recipe.templateSource);
 })
 
+Recipe.prototype.renderIngredients = function() {
+  this.ingredients.forEach(function(i) {
+    return Recipe.template(i)
+  })
+}
+
 Recipe.prototype.renderDisplay = function() {
   return Recipe.template(this)
 }
@@ -23,12 +29,14 @@ $(function () {
     var posting = $.post(action, params);
 
       posting.success(function(data) {
-        debugger;
         var recipe = new Recipe(data["recipe"]);
         var recipeDisplay = recipe.renderDisplay()
-        $('#recipeResults').append(recipeDisplay)
+        var showIngredients = recipe.renderIngredients()
 
-      }) .error(function(response) {
+        $('#recipeResults').append(recipeDisplay)
+        $('#recipeResults').append(showIngredients)
+      })
+      .error(function(response) {
           console.log("Error!", response)
       })
     });
