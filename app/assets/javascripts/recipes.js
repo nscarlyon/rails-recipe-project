@@ -80,6 +80,7 @@ Recipe.more = function() {
           var recipe = new Recipe(data["recipe"]);
           var recipeDisplay = recipe.renderDisplay()
           $('#recipeResults-' + id).html(recipeDisplay)
+
         })
       }
 
