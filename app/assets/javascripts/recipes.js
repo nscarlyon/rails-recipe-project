@@ -85,4 +85,5 @@ $(function () {
   $('form#new_recipe').submit(Recipe.formSubmit)
   $(".js-next").on("click", Recipe.nextRecipe)
   $('.js-more').on("click", Recipe.more)
+
 })
