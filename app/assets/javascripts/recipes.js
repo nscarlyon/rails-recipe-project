@@ -3,6 +3,7 @@ function Recipe(attributes) {
   this.content = attributes.content;
   this.id = attributes.id;
   this.ingredients = attributes.ingredients;
+  this.comments = attributes.comments;
 }
 
 $(function() {
