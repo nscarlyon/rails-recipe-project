@@ -58,7 +58,7 @@ Recipe.formSubmit = function(event) {
 Recipe.nextRecipe = function() {
       var nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.get("/recipes/" + nextId + ".json", function(data) {
-        Recipe.setTemplate
+        Recipe.setTemplate()
         var recipe = new Recipe(data["recipe"]);
         var recipeDisplay = recipe.renderDisplay()
         $('#recipeResults').html(recipeDisplay)
@@ -76,7 +76,7 @@ Recipe.more = function() {
         var id = $(this).data("id")
 
         $.get("/recipes/" + id + ".json", function(data) {
-          Recipe.setTemplate
+          Recipe.setTemplate()
           var recipe = data["recipe"]
           $('#recipe-' + id).html("<p>Content: " + recipe["content"] + "</p>")
 
