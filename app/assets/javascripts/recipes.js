@@ -34,7 +34,6 @@ Recipe.error = function(response) {
 }
 
 Recipe.formSubmit = function(event) {
-
   event.preventDefault();
   var $form = $(this);
   var action = $form.attr("action");
@@ -47,5 +46,4 @@ Recipe.formSubmit = function(event) {
 
 $(function () {
   $('form#new_recipe').submit(Recipe.formSubmit)
-
   });
