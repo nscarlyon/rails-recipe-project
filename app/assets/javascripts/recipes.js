@@ -2,6 +2,7 @@ function Recipe(attributes) {
   this.name = attributes.name;
   this.content = attributes.content;
   this.id = attributes.id;
+  this.user_id = attributes.user_id;
   this.ingredients = attributes.ingredients;
   this.comments = attributes.comments;
 }
