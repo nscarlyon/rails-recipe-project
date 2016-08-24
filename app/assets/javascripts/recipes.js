@@ -89,10 +89,8 @@ Recipe.more = function() {
             commentText += "</p>"
             $("#recipe-" + id + "-comments").append(commentText);
           })
-
-        });
-      });
-    });
+        })
+      }
 
 $(function () {
   $('form#new_recipe').submit(Recipe.formSubmit)
