@@ -75,4 +75,6 @@ Recipe.nextRecipe = function() {
 $(function () {
   $('form#new_recipe').submit(Recipe.formSubmit)
 
+    $(".js-next").on("click", function() {
+    })
 })
