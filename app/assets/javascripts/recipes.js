@@ -29,6 +29,10 @@ Recipe.success = function(data) {
   $('#recipeResults').append(recipeDisplay)
 }
 
+Recipe.error = function(response) {
+  console.log("Error!", response)
+}
+
 $(function () {
   $('form#new_recipe').submit(function(event) {
     event.preventDefault();
@@ -37,11 +41,7 @@ $(function () {
     var params = $form.serialize();
     var posting = $.post(action, params);
 
-      posting.success(function(Recipe.success) {
-
-      })
-      .error(function(response) {
-          console.log("Error!", response)
-      })
+      posting.success(Recipe.success)
+      .error(Recipe.error)
     });
   });
