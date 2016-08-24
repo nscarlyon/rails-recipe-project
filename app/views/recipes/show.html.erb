@@ -1,21 +1,17 @@
 <div id ="recipeResults">
-<h1 class = "name"><%= @recipe.name %></h1>
+  <h1 class = "name"><%= @recipe.name %></h1>
 
-<h3>Content</h3>
-<div class = "content"> <%= @recipe.content %> </div>
+  <h3>Content</h3>
+    <%= @recipe.content %>
 
-<h3>Ingredients List</h3>
-<div class = "ingredients">
+  <h3>Ingredients List</h3>
+    <% @recipe.ingredients.each do |i| %>
+      Item: <%= i.item.name %> Quantity: <%= i.quantity%> <%= i.unit %><br>
+    <%end%>
 
-<% @recipe.ingredients.each do |i| %>
-  Item: <%= i.item.name %> Quantity: <%= i.quantity%> <%= i.unit %><br>
-<%end%>
-</div>
-
-<h3>Comments</h3>
-<div class = "comments">
-<% @recipe.comments.each do |c| %>
-  <p><%= c.content %> ~by <strong><%= User.find(c.user_id).email %></strong> <br>
+  <h3>Comments</h3>
+    <% @recipe.comments.each do |c| %>
+      <p><%= c.content %> ~by <strong><%= User.find(c.user_id).email %></strong><br>
 
     <%if c.user_id == current_user.id %>
      <%=link_to "Edit Comment", edit_recipe_comment_path(@recipe, c) %><br>
@@ -23,7 +19,6 @@
     <%end%>
   </p>
 <%end%>
-</div>
 </div>
 
 <script id="recipe-template" type="text/x-handlebars-template">
@@ -39,7 +34,6 @@
   <h3>Comments</h3>
     {{#recipeComments comments}}
     {{content}} ~by <strong>{{user.email}}</strong> {{/recipeComments}}
-
 </script>
 
 
