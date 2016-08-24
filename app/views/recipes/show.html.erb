@@ -36,6 +36,7 @@
   <h3>Comments</h3>
     {{#recipeComments comments}}
     {{content}} ~by <strong>{{user.email}}</strong> {{/recipeComments}}
+    {{@user}}
 </script>
 
 <p class = "commentLink"><%=link_to "Add Comment", new_recipe_comment_path(@recipe) %></p>
