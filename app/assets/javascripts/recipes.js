@@ -60,9 +60,9 @@ Recipe.nextRecipe = function() {
         var recipeDisplay = recipe.renderDisplay()
         $('#recipeResults').html(recipeDisplay)
 
-        // $(".comments").text("");
-        // var recipeId = recipe["id"]
-        // $(".commentLink").html(`<a href="/recipes/${recipeId}/comments/new">Add comment</a>`)
+         $(".comments").text("");
+         var recipeId = data["recipe"]["id"]
+        $(".commentLink").html(`<a href="/recipes/${recipeId}/comments/new">Add comment</a>`)
 
         $(".js-next").attr("data-id", recipe["id"]);
       });
