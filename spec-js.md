@@ -10,8 +10,10 @@ Specs:
         *Recipe has many ingredients and comments. You can see this data rendered via JSON.*
 - [x ] Include at least one link that loads or updates a resource without reloading the page
       *The recipe new form creates a new recipe without reloading the page.*
-- [ ] Translate JSON responses into js model objects
-- [ ] At least one of the js model objects must have at least one method added by your code to the prototype
+- [x] Translate JSON responses into js model objects
+      *The recipe form translates the json response into a js model object*
+- [x] At least one of the js model objects must have at least one method added by your code to the prototype
+      *The recipe js object has a prototype method that displays its data in html form.*
 
 Confirm
 - [x ] You have a large number of small Git commits
