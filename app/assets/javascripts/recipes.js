@@ -77,21 +77,25 @@ Recipe.more = function() {
 
         $.get("/recipes/" + id + ".json", function(data) {
           Recipe.setTemplate()
-          var recipe = data["recipe"]
-          $('#recipe-' + id).html("<p>Content: " + recipe["content"] + "</p>")
+          var recipe = new Recipe(data["recipe"]);
+          var recipeDisplay = recipe.renderDisplay()
+          $('#recipeResults').html(recipeDisplay)
 
-          recipe["ingredients"].forEach(function(i) {
-            var ingredientsText = "Item: " + i["item"]["name"] + " Quantity: " + i["quantity"] + " " + i["unit"] + "<br>"
-            $("#recipe-" + id + "-ingredients").append(ingredientsText);
-          })
-
-          recipe["comments"].forEach(function(c) {
-            var commentText = "<p>"
-            commentText += c.content
-            commentText += "~by <strong>" + c.user.email + "</strong> <br>"
-            commentText += "</p>"
-            $("#recipe-" + id + "-comments").append(commentText);
-          })
+          // var recipe = data["recipe"]
+          // $('#recipe-' + id).html("<p>Content: " + recipe["content"] + "</p>")
+          //
+          // recipe["ingredients"].forEach(function(i) {
+          //   var ingredientsText = "Item: " + i["item"]["name"] + " Quantity: " + i["quantity"] + " " + i["unit"] + "<br>"
+          //   $("#recipe-" + id + "-ingredients").append(ingredientsText);
+          // })
+          //
+          // recipe["comments"].forEach(function(c) {
+          //   var commentText = "<p>"
+          //   commentText += c.content
+          //   commentText += "~by <strong>" + c.user.email + "</strong> <br>"
+          //   commentText += "</p>"
+          //   $("#recipe-" + id + "-comments").append(commentText);
+          // })
         })
       }
 
