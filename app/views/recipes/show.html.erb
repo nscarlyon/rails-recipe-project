@@ -24,6 +24,19 @@
 <%end%>
 </div>
 
+<script id="recipe-template" type="text/x-handlebars-template">
+  <h2>{{name}}</h2>
+
+  <h3>Content</h3>
+    <p>{{content}}</p>
+
+  <h3>Ingredients List</h3>
+    {{#list ingredients}}
+    <strong>Item:</strong> {{item.name}} <strong>Quantity:</strong> {{quantity}} <strong>Unit:</strong>
+    {{unit}}{{/list}}
+</script>
+
+
 <p class = "commentLink"><%=link_to "Add Comment", new_recipe_comment_path(@recipe) %></p>
 
 <%if @recipe.user_id == current_user.id%>
