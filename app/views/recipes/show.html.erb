@@ -38,7 +38,8 @@
     {{content}} ~by <strong>{{user.email}}</strong> {{/recipeComments}}
 
     {{#if comments}}
-      <p>Edit Comment/Delete Comment {{recipe_id}}</p>
+      <p><a href="{{@recipeId}}/comments/{{id}}/edit">Edit Comment</a></p>
+    {{else}}
     {{/if}}
 </script>
 
