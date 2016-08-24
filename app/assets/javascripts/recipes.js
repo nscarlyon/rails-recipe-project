@@ -7,13 +7,13 @@ function Recipe(attributes) {
   this.comments = attributes.comments;
 }
 
-$(function() {
-  Recipe.templateSource = $('#recipe-template').html()
-  Recipe.template = Handlebars.compile(Recipe.templateSource);
-})
-
 Recipe.prototype.renderDisplay = function() {
   return Recipe.template(this)
+}
+
+Recipe.setTemplate = function() {
+  Recipe.templateSource = $('#recipe-template').html()
+  Recipe.template = Handlebars.compile(Recipe.templateSource);
 }
 
 Handlebars.registerHelper('list', function(ingredients, options) {
@@ -45,6 +45,7 @@ Recipe.error = function(response) {
 
 Recipe.formSubmit = function(event) {
   event.preventDefault();
+  Recipe.setTemplate()
   var $form = $(this);
   var action = $form.attr("action");
   var params = $form.serialize();
@@ -57,6 +58,7 @@ Recipe.formSubmit = function(event) {
 Recipe.nextRecipe = function() {
       var nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.get("/recipes/" + nextId + ".json", function(data) {
+        Recipe.setTemplate
         var recipe = new Recipe(data["recipe"]);
         var recipeDisplay = recipe.renderDisplay()
         $('#recipeResults').html(recipeDisplay)
@@ -74,6 +76,7 @@ Recipe.more = function() {
         var id = $(this).data("id")
 
         $.get("/recipes/" + id + ".json", function(data) {
+          Recipe.setTemplate
           var recipe = data["recipe"]
           $('#recipe-' + id).html("<p>Content: " + recipe["content"] + "</p>")
 
