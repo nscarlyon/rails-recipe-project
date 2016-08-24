@@ -36,6 +36,11 @@
     {{#list ingredients}}
     <strong>Item:</strong> {{item.name}} <strong>Quantity:</strong> {{quantity}} <strong>Unit:</strong>
     {{unit}}{{/list}}
+
+  <h3>Comments</h3>
+    {{#recipeComments comments}}
+    <p>{{content}} ~by <strong><%= User.find({{user_id}}).email %></strong></p> {{/recipeComments}}
+
 </script>
 
 
