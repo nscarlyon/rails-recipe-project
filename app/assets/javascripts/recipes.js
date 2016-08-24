@@ -49,20 +49,12 @@ Recipe.nextRecipe = function() {
       $.get("/recipes/" + nextId + ".json", function(data) {
         var recipe = new Recipe(data["recipe"]);
         var recipeDisplay = recipe.renderDisplay()
-        $('#recipeResults').append(recipeDisplay)
-        //
-        // var recipe = data["recipe"]
-        // $(".name").text(recipe["name"]);
-        // $(".content").text(recipe["content"]);
-        // $(".ingredients").text("");
+        $('#recipeResults').html(recipeDisplay)
+
         // $(".comments").text("");
         // var recipeId = recipe["id"]
         // $(".commentLink").html(`<a href="/recipes/${recipeId}/comments/new">Add comment</a>`)
         //
-        // recipe["ingredients"].forEach(function(i) {
-        //   var ingredientsText = "Item: " + i["item"]["name"] + " Quantity: " + i["quantity"] + " " + i["unit"] + "<br>"
-        //   $(".ingredients").append(ingredientsText);
-        // })
         //
         // recipe["comments"].forEach(function(c) {
         //   var commentText = "<p>"
@@ -78,6 +70,5 @@ Recipe.nextRecipe = function() {
 
 $(function () {
   $('form#new_recipe').submit(Recipe.formSubmit)
-
   $(".js-next").on("click", Recipe.nextRecipe)
 })
