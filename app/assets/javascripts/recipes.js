@@ -32,6 +32,18 @@ Handlebars.registerHelper('recipeComments', function(comments, options) {
   return out;
 });
 
+Handlebars.registerHelper('if', function(comments, options) {
+  var currentUser = $('li#currentUser').attr('data-id')
+  var link = "hello"
+  for(var i=0, l=comments.length; i<l; i++) {
+    debugger;
+    if(currentUser == comments[i].user.id) {
+      link += options.fn(comments[i])
+    }
+  }
+  return link;
+});
+
 Recipe.success = function(data) {
   var recipe = new Recipe(data["recipe"]);
   var recipeDisplay = recipe.renderDisplay()
@@ -63,9 +75,10 @@ Recipe.nextRecipe = function() {
         var recipeDisplay = recipe.renderDisplay()
         $('#recipeResults').html(recipeDisplay)
 
+        var currentUser = $('li#currentUser').attr('data-id')
+
          var recipeId = data["recipe"]["id"]
         $(".commentLink").html(`<a href="/recipes/${recipeId}/comments/new">Add comment</a>`)
-
         $(".js-next").attr("data-id", recipe["id"]);
       });
     }
@@ -85,5 +98,4 @@ $(function () {
   $('form#new_recipe').submit(Recipe.formSubmit)
   $(".js-next").on("click", Recipe.nextRecipe)
   $('.js-more').on("click", Recipe.more)
-
 })
