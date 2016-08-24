@@ -14,6 +14,14 @@ Recipe.prototype.renderDisplay = function() {
   return Recipe.template(this)
 }
 
+Handlebars.registerHelper('list', function(ingredients, options) {
+  var out = "<ul>";
+  for(var i=0, l=ingredients.length; i<l; i++) {
+    out = out + "<li>" + options.fn(ingredients[i]) + "</li>";
+  }
+  return out + "</ul>";
+});
+
 $(function () {
   $('form#new_recipe').submit(function(event) {
     event.preventDefault();
