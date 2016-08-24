@@ -11,7 +11,7 @@ $(function() {
 })
 
 Recipe.prototype.renderDisplay = function() {
-
+  return Recipe.template(this)
 }
 
 $(function () {
