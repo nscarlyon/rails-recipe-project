@@ -22,6 +22,14 @@ Handlebars.registerHelper('list', function(ingredients, options) {
   return out + "</ul>";
 });
 
+Handlebars.registerHelper('recipeComments', function(comments, options) {
+  var out = ""
+  for(var i=0, l=comments.length; i<l; i++) {
+    out = out + "<p>" + options.fn(comments[i]) + "</p>";
+  }
+  return out;
+});
+
 Recipe.success = function(data) {
   var recipe = new Recipe(data["recipe"]);
   var recipeDisplay = recipe.renderDisplay()
