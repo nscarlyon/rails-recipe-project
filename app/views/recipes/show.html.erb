@@ -42,8 +42,10 @@
     <strong>Item:</strong> {{item.name}} <strong>Quantity:</strong> {{quantity}} {{unit}}{{/list}}
 
   <h3>Comments</h3>
-    {{#recipeComments comments}} {{content}} ~by <strong>{{user.email}}</strong>
-      <p><a href="{{recipe_id}}/comments/{{id}}/edit">Edit Comment</a></p>
+    {{#recipeComments comments}}
+    {{content}} ~by <strong>{{user.email}}</strong><br>
+      <a href="{{recipe_id}}/comments/{{id}}/edit">Edit Comment</a><br>
+      <a rel="nofollow" href="{{recipe_id}}/comments/{{id}}" data-method="delete">Delete Comment</a><br>
     {{/recipeComments}}
 
     <p><a href="/recipes/{{id}}/comments/new">Add Comment</a></p>
