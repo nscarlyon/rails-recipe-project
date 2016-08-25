@@ -42,11 +42,9 @@
     <strong>Item:</strong> {{item.name}} <strong>Quantity:</strong> {{quantity}} {{unit}}{{/list}}
 
   <h3>Comments</h3>
-    {{#recipeComments comments}} {{content}} ~by <strong>{{user.email}}</strong> {{/recipeComments}}
-
-    {{#if comments}}
+    {{#recipeComments comments}} {{content}} ~by <strong>{{user.email}}</strong>
       <p><a href="{{recipe_id}}/comments/{{id}}/edit">Edit Comment</a></p>
-    {{/if}}
+    {{/recipeComments}}
 
     <p><a href="/recipes/{{id}}/comments/new">Add Comment</a></p>
     <p><a href="/recipes/{{id}}/edit">Edit Recipe</a></p>
