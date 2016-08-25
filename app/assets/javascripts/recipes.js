@@ -36,17 +36,9 @@ Handlebars.registerHelper('if', function(comments, options) {
   var currentUser = $('li#currentUser').attr('data-id')
   var link = ""
 
-  if (options.data) {
-   data = Handlebars.createFrame(options.data);
-  }
-
   for(var i=0, l=comments.length; i<l; i++) {
-    if (data) {
-     data.recipeId = data.root.id;
-   }
-
     if(currentUser == comments[i].user.id) {
-      link += options.fn(comments[i], { data: data })
+      link += options.fn(comments[i])
     }
   }
   return link;
