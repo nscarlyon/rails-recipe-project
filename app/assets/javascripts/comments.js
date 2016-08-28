@@ -11,7 +11,15 @@ Comments.prototype.renderDisplay = function() {
   return Comments.template(this)
 }
 
-var nextComments = function() {
+Handlebars.registerHelper('test', function(comments, options) {
+  var out = ""
+  for(var i=0, l=comments.length; i<l; i++) {
+    out = out + "<p>" + options.fn(comments[i]) + "</p>";
+  }
+  return out;
+});
+
+Comments.nextComments = function() {
   var nextId = parseInt($(".js-next").attr("data-id")) + 1;
 
   $.get("/recipes/" + nextId + "/comments", function(data) {
