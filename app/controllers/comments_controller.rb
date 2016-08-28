@@ -18,6 +18,11 @@ class CommentsController < ApplicationController
     end
   end
 
+  def show
+    @comment = Comment.find(params[:id])
+    render json: @comment
+  end
+
   def edit
     @recipe = Recipe.find(params[:recipe_id])
     @comment = Comment.find(params[:id])
@@ -35,7 +40,7 @@ class CommentsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    @recipe.save 
+    @recipe.save
     redirect_to @recipe, alert: "Comment successfully deleted."
   end
 
