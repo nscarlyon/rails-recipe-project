@@ -57,7 +57,8 @@
 </script>
 
 <script id="comments-template" type="text/x-handlebars-template">
-  {{comments}}
+  {{#test comments}}
+  {{content}} ~by <strong>{{user.email}}</strong><br>
 </script>
 
 
