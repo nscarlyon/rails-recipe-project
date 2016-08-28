@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 
   resources :recipes do
-    resources :comments, only: [:new, :create, :edit, :update, :destroy]
+    resources :comments, only: [:new, :create, :edit, :update, :destroy, :show]
   end
 
   get 'users/most_recipes', to: 'users#show'
