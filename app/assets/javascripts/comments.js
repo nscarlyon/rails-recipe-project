@@ -18,6 +18,7 @@ var nextComments = function() {
     Comments.setTemplate();
     var comments = new Comments(data)
     var renderDisplay = comments.renderDisplay()
+    $('#commentsResults').html(renderDisplay)
   })
 }
 
