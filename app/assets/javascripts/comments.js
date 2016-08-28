@@ -1,22 +1,20 @@
-function Comment(attributes) {
-  this.id = attributes.id;
-  this.content = attributes.content;
-  this.recipe_id = attributes.recipe_id;
-  this.user_id = attributes.user_id;
-  this.user = attributes.user;
+function Comments(attributes) {
+  this.comments = attributes.comments
+}
+
+Comments.setTemplate = function() {
+  Comments.templateSource = $('#comments-template').html()
+  Comments.template = Handlebars.compile(Comments.templateSource);
 }
 
 var nextComments = function() {
   var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-  var recipeComments = []
 
   $.get("/recipes/" + nextId + "/comments", function(data) {
-      data["comments"].forEach(function(comment) {
-        var comment = new Comment(comment)
-        recipeComments.push(comment)
-      })
-      console.log(recipeComments)
-  });
+    Comments.setTemplate();
+    var comments = new Comments(data)
+
+  })
 }
 
 $(function () {
