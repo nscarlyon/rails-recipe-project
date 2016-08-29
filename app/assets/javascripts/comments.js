@@ -1,5 +1,9 @@
 function Comment(attributes) {
+  this.id = attributes.id
+  this.recipe_id = attributes.recipe_id
   this.content = attributes.content
+  this.user_id = attributes.user_id
+  this.user = attributes.user
 }
 
 Comment.setTemplate = function() {
