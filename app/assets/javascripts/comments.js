@@ -11,13 +11,6 @@ Comments.prototype.renderDisplay = function() {
   return Comments.template(this)
 }
 
-Handlebars.registerHelper('test', function(comments, options) {
-  var out = ""
-  for(var i=0, l=comments.length; i<l; i++) {
-    out = out + "<p>" + options.fn(comments[i]) + "</p>";
-  }
-  return out;
-});
 
 Comments.nextComments = function() {
   var nextId = parseInt($(".js-next").attr("data-id")) + 1;
@@ -25,11 +18,11 @@ Comments.nextComments = function() {
   $.get("/recipes/" + nextId + "/comments", function(data) {
     Comments.setTemplate();
     var comments = new Comments(data)
-    var renderDisplay = comments.renderDisplay()
-    $('#commentsResults').html(renderDisplay)
+    var commentsDisplay = comments.renderDisplay()
+    $('#commentsResults').html(commentsDisplay)
   })
 }
 
 $(function () {
-  $(".js-next").on("click", nextComments)
+  $(".js-next").on("click", Comments.nextComments)
 })
