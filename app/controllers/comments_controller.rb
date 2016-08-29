@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+
+  before_action :set_recipe
+
   def index
     @comments = Recipe.find(params[:recipe_id]).comments
     respond_to do |f|
@@ -8,13 +11,11 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.find(params[:recipe_id])
     @comment = Comment.new
   end
 
   def create
     @comment = Comment.new(comment_params)
-    @recipe = Recipe.find(params[:recipe_id])
 
     if @comment.valid?
       @recipe.comments << @comment
@@ -32,12 +33,10 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:recipe_id])
     @comment = Comment.find(params[:id])
   end
 
   def update
-    @recipe = Recipe.find(params[:recipe_id])
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
     @comment.save
@@ -45,7 +44,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:recipe_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
     @recipe.save
