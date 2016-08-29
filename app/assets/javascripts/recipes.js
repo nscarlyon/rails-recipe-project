@@ -71,7 +71,7 @@ Recipe.nextRecipe = function() {
 
 Recipe.more = function() {
         var id = $(this).data("id")
-        debugger;
+
         $.get("/recipes/" + id + ".json", function(data) {
           Recipe.setTemplate()
           var recipe = new Recipe(data["recipe"]);
