@@ -11,15 +11,18 @@ Comments.prototype.renderDisplay = function() {
   return Comments.template(this)
 }
 
-
 Comments.nextComments = function() {
   var nextId = parseInt($("#commentsButton").attr("data-id")) + 1;
 
-  $.get("/recipes/" + nextId + "/comments", function(data) {
+  $.get("/recipes/" + nextId + "/comments.json", function(data) {
     Comments.setTemplate();
-    var comments = new Comments(data)
-    var commentsDisplay = comments.renderDisplay()
-    $('#commentsResults').html(commentsDisplay)
+
+    data["comments"].forEach(function(comment) {
+      debugger;
+      var comments = new Comments(comment)
+      var commentsDisplay = comments.renderDisplay()
+      $('#commentsResults').html(commentsDisplay)
+    })
   })
 }
 
