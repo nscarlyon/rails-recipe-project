@@ -1,9 +1,11 @@
-<button id="commentsButton" data-id="<%=@comments.recipe.id%>">Comments</button>
+<button id="commentsButton" data-id="<%=@comments.first.recipe_id%>">Comments</button>
 
 <div id="commentsResults">
 </div>
 
 <script id="comments-template" type="text/x-handlebars-template">
+  {{comments}}
+
   {{#each}}
   {{comments}}
   {{/each}}
