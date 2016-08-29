@@ -66,7 +66,9 @@ Recipe.nextRecipe = function() {
         var currentUser = $('li#currentUser').attr('data-id')
 
         $(".js-next").attr("data-id", recipe["id"]);
-      });
+      }).fail(function() {
+        alert("There are no more recipes!")
+      })
     }
 
 Recipe.more = function() {
