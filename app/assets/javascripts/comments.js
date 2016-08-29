@@ -26,7 +26,6 @@ Comment.nextComments = function() {
       var comment = new Comment(c)
       var commentDisplay = comment.renderDisplay()
       $('#commentsResults').append(commentDisplay)
-      debugger;
     })
   })
 }

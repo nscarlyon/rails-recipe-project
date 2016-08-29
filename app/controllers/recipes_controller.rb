@@ -53,6 +53,11 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
 
   def edit
     @user = User.find(@recipe.user_id)
+    if current_user.id === @recipe.user_id
+      render :edit
+    else
+      redirect_to user_recipes_path(current_user), alert: "You may only edit your own recipe."
+    end
   end
 
   def update
@@ -65,10 +70,14 @@ before_action :set_recipe, only: [:edit, :update, :show, :destroy]
   end
 
   def destroy
-    @recipe.ingredients.clear
-    @recipe.destroy
-    @recipe.save
-    redirect_to user_recipes_path(current_user), alert: "Recipe successfully deleted."
+    if current_user.id == @recipe.user_id
+      @recipe.ingredients.clear
+      @recipe.destroy
+      @recipe.save
+      redirect_to user_recipes_path(current_user), alert: "Recipe successfully deleted."
+    else
+      redirect_to user_recipes_path(current_user), alert: "You are not authorized to delete this recipe."
+    end
   end
 
   private
