@@ -2,13 +2,13 @@ function Comments(attributes) {
   this.comments = attributes.comments
 }
 
-Comments.setTemplate = function() {
-  Comments.templateSource = $('#comments-template').html()
-  Comments.template = Handlebars.compile(Comments.templateSource);
+Comment.setTemplate = function() {
+  Comment.templateSource = $('#comments-template').html()
+  Comment.template = Handlebars.compile(Comment.templateSource);
 }
 
-Comments.prototype.renderDisplay = function() {
-  return Comments.template(this)
+Comment.prototype.renderDisplay = function() {
+  return Comment.template(this)
 }
 
 Comments.nextComments = function() {
@@ -19,9 +19,9 @@ Comments.nextComments = function() {
 
     data["comments"].forEach(function(comment) {
       debugger;
-      var comments = new Comments(comment)
-      var commentsDisplay = comments.renderDisplay()
-      $('#commentsResults').html(commentsDisplay)
+      var comment = new Comment(comment)
+      var commentDisplay = comment.renderDisplay()
+      $('#commentsResults').html(commentDisplay)
     })
   })
 }
