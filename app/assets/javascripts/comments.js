@@ -13,7 +13,7 @@ Comments.prototype.renderDisplay = function() {
 
 
 Comments.nextComments = function() {
-  var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+  var nextId = parseInt($("#commentsButton").attr("data-id")) + 1;
 
   $.get("/recipes/" + nextId + "/comments", function(data) {
     Comments.setTemplate();
