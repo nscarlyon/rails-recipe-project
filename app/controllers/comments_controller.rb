@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     respond_to do |f|
       f.html {render json: @comments}
       f.html {render :index}
+    end
   end
 
   def new

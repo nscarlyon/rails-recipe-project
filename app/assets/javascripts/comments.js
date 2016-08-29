@@ -24,5 +24,5 @@ Comments.nextComments = function() {
 }
 
 $(function () {
-  $(".js-next").on("click", Comments.nextComments)
+  $("#commentsButton").on("click", Comments.nextComments)
 })
