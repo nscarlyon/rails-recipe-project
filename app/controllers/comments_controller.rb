@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   def index
     @comments = Recipe.find(params[:recipe_id]).comments
     respond_to do |f|
-      f.html {render json: @comments}
+      f.json {render json: @comments}
       f.html {render :index}
     end
   end
