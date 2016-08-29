@@ -54,6 +54,10 @@ class CommentsController < ApplicationController
 
   private
 
+    def set_recipe
+      @recipe = Recipe.find_by(id: params[:recipe_id])
+    end
+
     def comment_params
       params.require(:comment).permit(:content, :user_id, :recipe_id)
     end
