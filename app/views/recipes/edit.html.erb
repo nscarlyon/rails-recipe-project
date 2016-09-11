@@ -26,7 +26,6 @@
 
 
 <div id="items">
-<div id="0" class="item"></div>
 </div>
 
 <button class="js-addItem" data-id="0" type="button">Add Item</button>
@@ -34,4 +33,9 @@
 <p><%= f.submit %></p>
 <%end%>
 
-<%= render partial: 'itemFields' %>
+<script type ="text/javascript" charset="utf-8">
+  $(function () {
+    $(".js-addItem").on("click", addItem)
+    $(".js-remove").on("click", removeItem)
+  })
+</script>

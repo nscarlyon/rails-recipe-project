@@ -1,0 +1,303 @@
+//items.js
+
+var id = $("input:text:last-of-type").length
+var inputName = document.createElement("input");
+inputName.name = `recipe[ingredients_attributes][${id}][item_attributes][name]`;
+inputName.type = "text";
+inputName.id = `recipe_ingredients_attributes_${id}_item_attributes_name`;
+
+var inputQuantity = document.createElement("input");
+inputQuantity.name = `recipe[ingredients_attributes][${id}][quantity]`;
+inputQuantity.type = "text";
+inputQuantity.id = `recipe_ingredients_attributes_${id}_quantity`;
+
+var inputUnit = document.createElement("input");
+inputUnit.name = `recipe[ingredients_attributes][${id}][unit]`;
+inputUnit.type = "text";
+inputUnit.id = `recipe_ingredients_attributes_${id}_unit`;
+
+var itemDiv = document.createElement("div");
+itemDiv.id = id;
+$('#items').append(itemDiv);
+$(`div #${id}`).addClass("item");
+$(`div #${id}`).append("Item Name:", inputName, "Quantity:", inputQuantity, "Unit:", inputUnit);
+$(".js-addItem").attr("data-id", id);
+
+
+//recipes new
+
+function Recipe(attributes) {
+  this.name = attributes.name;
+  this.content = attributes.content;
+  this.id = attributes.id;
+  this.user_id = attributes.user_id;
+  this.ingredients = attributes.ingredients;
+  this.comments = attributes.comments;
+}
+
+Recipe.prototype.renderDisplay = function() {
+  return Recipe.template(this)
+}
+
+Recipe.setTemplate = function() {
+  Recipe.templateSource = $('#recipe-template').html()
+  Recipe.template = Handlebars.compile(Recipe.templateSource);
+}
+
+Handlebars.registerHelper('list', function(ingredients, options) {
+  var out = "<ul>";
+  for(var i=0, l=ingredients.length; i<l; i++) {
+    out = out + "<li>" + options.fn(ingredients[i]) + "</li>";
+  }
+  return out + "</ul>";
+});
+
+
+//comments.js
+
+function Comment(attributes) {
+  this.id = attributes.id
+  this.recipe_id = attributes.recipe_id
+  this.content = attributes.content
+  this.user_id = attributes.user_id
+  this.user = attributes.user
+}
+
+Comment.setTemplate = function() {
+  Comment.templateSource = $('#comments-template').html()
+  Comment.template = Handlebars.compile(Comment.templateSource);
+}
+
+Comment.prototype.renderDisplay = function() {
+  return Comment.template(this)
+}
+
+Handlebars.registerHelper('if', function(comment, options) {
+  var currentUser = $('li#currentUser').attr('data-id')
+  if(this.user_id == currentUser) {
+    return options.fn(this)
+  }
+});
+
+Comment.index = function() {
+  var id = parseInt($("#commentsButton").attr("data-id"));
+
+  $.get("/recipes/" + id + "/comments.json", function(data) {
+    debugger;
+    var currentUser = $('li#currentUser').attr('data-id')
+    Comment.setTemplate();
+
+    data["comments"].forEach(function(c) {
+      var comment = new Comment(c)
+      var commentDisplay = comment.renderDisplay()
+      $('#commentsResults').append(commentDisplay)
+    })
+  })
+}
+
+$(function () {
+  $('#commentsButton').on("click", Comment.index)
+})
+
+
+
+//recipes.js
+
+function Recipe(attributes) {
+  this.name = attributes.name;
+  this.content = attributes.content;
+  this.id = attributes.id;
+  this.user_id = attributes.user_id;
+  this.ingredients = attributes.ingredients;
+  this.comments = attributes.comments;
+}
+
+Recipe.prototype.renderDisplay = function() {
+  return Recipe.template(this)
+}
+
+Recipe.setTemplate = function() {
+  Recipe.templateSource = $('#recipe-template').html()
+  Recipe.template = Handlebars.compile(Recipe.templateSource);
+}
+
+Handlebars.registerHelper('list', function(ingredients, options) {
+  var out = "<ul>";
+  for(var i=0, l=ingredients.length; i<l; i++) {
+    out = out + "<li>" + options.fn(ingredients[i]) + "</li>";
+  }
+  return out + "</ul>";
+});
+
+Handlebars.registerHelper('recipeComments', function(comments, options) {
+  var out = ""
+  for(var i=0, l=comments.length; i<l; i++) {
+    out = out + "<p>" + options.fn(comments[i]) + "</p>";
+  }
+  return out;
+});
+
+Handlebars.registerHelper('test', function(comments, options) {
+  var currentUser = $('li#currentUser').attr('data-id')
+  if(this.user_id == currentUser) {
+    return options.fn(this)
+  }
+});
+
+Recipe.formSubmit = function(event) {
+  event.preventDefault();
+  Recipe.setTemplate()
+  var $form = $(this);
+  var action = $form.attr("action");
+  var params = $form.serialize();
+  var posting = $.post(action, params);
+
+     posting.success(Recipe.success)
+     posting.error(Recipe.error)
+  }
+
+  Recipe.success = function(data) {
+    var recipe = new Recipe(data["recipe"]);
+    var recipeDisplay = recipe.renderDisplay()
+
+    $('#recipeResults').append(recipeDisplay)
+  }
+
+  Recipe.error = function(response) {
+    console.log("Error!", response)
+  }
+
+Recipe.nextRecipe = function() {
+      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+      var currentUser = $('li#currentUser').attr('data-id')
+
+      $.get("/recipes/" + nextId + ".json", function(data) {
+        Recipe.setTemplate()
+        var recipe = new Recipe(data["recipe"]);
+        var recipeDisplay = recipe.renderDisplay()
+        $('#recipeResults').html(recipeDisplay)
+
+        $(".js-next").attr("data-id", recipe["id"]);
+      }).fail(function() {
+        alert("There are no more recipes!")
+      })
+    }
+
+Recipe.addItem = function() {
+  var id = $("input:text:last-of-type").length
+  var inputName = document.createElement("input");
+  inputName.name = `recipe[ingredients_attributes][${id}][item_attributes][name]`;
+  inputName.type = "text";
+  inputName.id = `recipe_ingredients_attributes_${id}_item_attributes_name`;
+
+  var inputQuantity = document.createElement("input");
+  inputQuantity.name = `recipe[ingredients_attributes][${id}][quantity]`;
+  inputQuantity.type = "text";
+  inputQuantity.id = `recipe_ingredients_attributes_${id}_quantity`;
+
+  var inputUnit = document.createElement("input");
+  inputUnit.name = `recipe[ingredients_attributes][${id}][unit]`;
+  inputUnit.type = "text";
+  inputUnit.id = `recipe_ingredients_attributes_${id}_unit`;
+
+  var itemDiv = document.createElement("div");
+  itemDiv.id = id;
+  $('#items').append(itemDiv);
+  $(`div #${id}`).addClass("item");
+  $(`div #${id}`).append("Item Name:", inputName, "Quantity:", inputQuantity, "Unit:", inputUnit);
+  $(".js-addItem").attr("data-id", id);
+}
+
+Recipe.removeItem = function() {
+  var item = document.getElementById("items");
+  item.removeChild(item.lastChild);
+}
+
+Recipe.addListeners = function() {
+  $('form#new_recipe').submit(Recipe.formSubmit)
+  $(".js-next").on("click", Recipe.nextRecipe)
+  $(".js-addItem").on("click", Recipe.addItem)
+  $(".js-remove").on("click", Recipe.removeItem)
+}
+
+$(function () {
+  Recipe.addListeners()
+})
+
+
+//Recipe Show Code
+
+  <h3>Content</h3>
+    <%= @recipe.content %>
+
+  <h3>Ingredients List</h3>
+    <ul>
+      <% @recipe.ingredients.each do |i| %>
+        <li>Item: <%= i.item.name %> Quantity: <%= i.quantity%> <%= i.unit %></li>
+      <%end%>
+    </ul>
+
+  <h3>Comments</h3>
+    <% @recipe.comments.each do |c| %>
+      <p><%= c.content %> ~by <strong><%= User.find(c.user_id).email %></strong><br>
+
+    <%if c.user_id == current_user.id %>
+     <%=link_to "Edit Comment", edit_recipe_comment_path(@recipe, c) %><br>
+     <%=link_to "Delete Comment", recipe_comment_path(@recipe, c), :method => :delete %>
+    <%end%>
+  </p>
+<%end%>
+
+<p class = "commentLink"><%=link_to "Add Comment", new_recipe_comment_path(@recipe) %></p>
+
+<%if @recipe.user_id == current_user.id%>
+  <p><%=link_to "Edit Recipe", edit_recipe_path(@recipe) %>
+  <p><%=link_to "Delete Recipe", recipe_path(@recipe), :method => :delete %>
+<%end%>
+
+
+//Recipes Index Code
+
+  $('.js-more').on("click", Recipe.more)
+
+  Recipe.more = function() {
+          var id = $(this).data("id")
+
+          $.get("/recipes/" + id + ".json", function(data) {
+            Recipe.setTemplate()
+            var recipe = new Recipe(data["recipe"]);
+            var recipeDisplay = recipe.renderDisplay()
+            $('#recipeResults-' + id).html(recipeDisplay)
+          })
+        }
+
+<%@recipes.each do |recipe|%>
+<%= link_to recipe.name, recipe_path(recipe) %>
+<div id = "recipeResults-<%=recipe.id%>">
+<div id="recipe-<%= recipe.id %>"><%= truncate(recipe.content) %></div>
+
+<p><button class = "js-more" data-id = "<%= recipe.id %>">More Info</button></p>
+</div>
+<%end%>
+
+<%if @user == current_user %>
+<p><%= link_to "Add New Recipe", new_recipe_path(current_user) %></p>
+<%end%>
+
+<script id="recipe-template" type="text/x-handlebars-template">
+  <h1>{{name}}</h1>
+
+  <h3>Content</h3>
+    <p>{{content}}</p>
+
+  <h3>Ingredients List</h3>
+    {{#list ingredients}}
+    <strong>Item:</strong> {{item.name}} <strong>Quantity:</strong> {{quantity}} {{unit}}{{/list}}
+
+  <h3>Comments</h3>
+    {{#recipeComments comments}}
+    {{content}} ~by <strong>{{user.email}}</strong> {{/recipeComments}}
+
+  <p><a href="/recipes/{{id}}/edit">Edit Recipe</a></p>
+  <p><a rel="nofollow" href="/recipes/{{id}}" data-method="delete">Delete Recipe</a></p>
+</script>

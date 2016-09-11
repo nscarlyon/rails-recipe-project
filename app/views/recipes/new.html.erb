@@ -1,42 +1,38 @@
 <h1>Recipes#new</h1>
 <%= form_for @recipe do |f|%>
 
-<%= render partial: 'errors', locals: {:object => @recipe} %>
+  <%= render partial: 'errors', locals: {:object => @recipe} %>
 
-<%= f.label "Title:" %>
-<%= f.text_field :name %>
-<p><%= f.label "Content:" %></p>
-<%= f.text_area :content %><br>
-<%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.label "Title:" %>
+  <%= f.text_field :name %>
+  <p><%= f.label "Content:" %></p>
+  <%= f.text_area :content %><br>
+  <%= f.hidden_field :user_id, value: @user.id %>
 
-<br>
-<%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_form| %>
-
-<%= ingredients_form.fields_for :item, @recipe.ingredients.build.build_item do |item_form| %>
-<%= item_form.label "Item Name:" %>
-<%= item_form.text_field :name %>
-<%= ingredients_form.label "Quantity:" %>
-<%= ingredients_form.text_field :quantity %>
-<%= ingredients_form.label "Unit:" %>
-<%= ingredients_form.text_field :unit %>
-<br>
-
-<%end%>
+  <br>
+  <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_form| %>
+    <%= ingredients_form.fields_for :item, @recipe.ingredients.build.build_item do |item_form| %>
+      <%= item_form.label "Item Name:" %>
+      <%= item_form.text_field :name %>
+      <%= ingredients_form.label "Quantity:" %>
+      <%= ingredients_form.text_field :quantity %>
+      <%= ingredients_form.label "Unit:" %>
+      <%= ingredients_form.text_field :unit %>
+  <br>
+  <%end%>
 <%end%>
 
 <div id="items">
-<div id="0" class="item">
-</div>
+  
 </div>
 
-<button class="js-addItem" data-id="0" type="button">Add Item</button>
+<button class="js-addItem" data-id="0" type="button" data-url="/recipes/ingredients/new">Add Item</button>
 <button class="js-remove" type="button">Remove Item</button>
 
 <p><%= f.submit %></p>
 <%end%>
 
-<div id="recipeResults">
-</div>
+<div id="recipeResults"></div>
 
 <script id="recipe-template" type="text/x-handlebars-template">
   <h2>{{name}}</h2>
@@ -50,4 +46,8 @@
     {{unit}}{{/list}}
 </script>
 
-<%= render partial: 'itemFields' %>
+<script type ="text/javascript" charset="utf-8">
+  $(function () {
+    addListeners()
+  })
+</script>

@@ -2,14 +2,6 @@ class CommentsController < ApplicationController
 
   before_action :set_recipe
 
-  def index
-    @comments = Recipe.find(params[:recipe_id]).comments
-    respond_to do |f|
-      f.json {render json: @comments}
-      f.html {render :index}
-    end
-  end
-
   def new
     @comment = Comment.new
   end
@@ -27,13 +19,11 @@ class CommentsController < ApplicationController
     end
   end
 
-  def show
-    @comment = Comment.find(params[:id])
-    render json: @comment
-  end
-
   def edit
     @comment = Comment.find(params[:id])
+    if @comment.user_id != current_user.id
+      redirect_to user_recipes_path(current_user), alert: "You may not delete this comment!"
+    end
   end
 
   def update
@@ -48,6 +38,10 @@ class CommentsController < ApplicationController
     @comment.destroy
     @recipe.save
     redirect_to @recipe, alert: "Comment successfully deleted."
+
+    if @comment.user_id != current_user.id
+      redirect_to user_recipes_path(current_user), alert: "You may not delete this comment."
+    end
   end
 
   private

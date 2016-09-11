@@ -1,35 +1,21 @@
 <h1>Recipes#index</h1>
 
-<%@recipes.each do |recipe|%>
-<%= link_to recipe.name, recipe_path(recipe) %>
-<div id = "recipeResults-<%=recipe.id%>">
-<div id="recipe-<%= recipe.id %>"><%= truncate(recipe.content) %></div>
-
-<div id="recipe-<%=recipe.id%>-ingredients"></div>
-<div id="recipe-<%=recipe.id%>-comments"> </div>
-
-<p><button class = "js-more" data-id = "<%= recipe.id %>">More Info</button></p>
-</div>
-<%end%>
+<div id="recipesResults"></div>
 
 <%if @user == current_user %>
 <p><%= link_to "Add New Recipe", new_recipe_path(current_user) %></p>
 <%end%>
 
-<script id="recipe-template" type="text/x-handlebars-template">
-  <h1>{{name}}</h1>
+<script type ="text/javascript" charset="utf-8">
+  $(function() {
+    Recipes.index()
+  });
+</script>
 
-  <h3>Content</h3>
-    <p>{{content}}</p>
+<script id="recipes-template" type="text/x-handlebars-template">
 
-  <h3>Ingredients List</h3>
-    {{#list ingredients}}
-    <strong>Item:</strong> {{item.name}} <strong>Quantity:</strong> {{quantity}} {{unit}}{{/list}}
-
-  <h3>Comments</h3>
-    {{#recipeComments comments}}
-    {{content}} ~by <strong>{{user.email}}</strong> {{/recipeComments}}
-
-  <p><a href="/recipes/{{id}}/edit">Edit Recipe</a></p>
-  <p><a rel="nofollow" href="/recipes/{{id}}" data-method="delete">Delete Recipe</a></p>
+  {{#each recipes}}
+  <h3><a href="/recipes/{{id}}">{{name}}</a></h3>
+    {{content}}
+    {{/each}}
 </script>

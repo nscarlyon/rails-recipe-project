@@ -1,10 +1,13 @@
-<button id="commentsButton" data-id="<%=@comments.first.recipe_id%>">Comments</button>
-
 <div id="commentsResults">
 </div>
 
+<button id="commentsButton" data-id="<%=@comments.first.recipe_id%>">Load Comments</button>
+
 <script id="comments-template" type="text/x-handlebars-template">
+  <p>{{content}} by <strong>{{user.email}}</strong></p>
 
-<p>{{content}} by <strong>{{user.email}}</strong></p>
-
+  {{#if comment}}
+  <a href="/recipes/{{recipe_id}}/comments/{{id}}/edit">Edit Comment</a><br>
+  <a rel="nofollow" href="/recipes/{{recipe_id}}/comments/{{id}}" data-method="delete">Delete Comment</a><br>
+  {{/if}}
 </script>

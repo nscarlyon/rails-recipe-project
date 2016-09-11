@@ -1,36 +1,15 @@
 <div id ="recipeResults">
-  <h1 class = "name"><%= @recipe.name %></h1>
-
-  <h3>Content</h3>
-    <%= @recipe.content %>
-
-  <h3>Ingredients List</h3>
-    <ul>
-      <% @recipe.ingredients.each do |i| %>
-        <li>Item: <%= i.item.name %> Quantity: <%= i.quantity%> <%= i.unit %></li>
-      <%end%>
-    </ul>
-
-  <h3>Comments</h3>
-    <% @recipe.comments.each do |c| %>
-      <p><%= c.content %> ~by <strong><%= User.find(c.user_id).email %></strong><br>
-
-    <%if c.user_id == current_user.id %>
-     <%=link_to "Edit Comment", edit_recipe_comment_path(@recipe, c) %><br>
-     <%=link_to "Delete Comment", recipe_comment_path(@recipe, c), :method => :delete %>
-    <%end%>
-  </p>
-<%end%>
-
-<p class = "commentLink"><%=link_to "Add Comment", new_recipe_comment_path(@recipe) %></p>
-
-<%if @recipe.user_id == current_user.id%>
-  <p><%=link_to "Edit Recipe", edit_recipe_path(@recipe) %>
-  <p><%=link_to "Delete Recipe", recipe_path(@recipe), :method => :delete %>
-<%end%>
-
+  <h1 class="name" data-id="<%=@recipe.id%>"><%= @recipe.name %></h1>
 </div>
 
+<p><button class= "js-next" data-id="<%=@recipe.id%>" type="button">Next Recipe</button></p>
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    showRecipe()
+    $(".js-next").on("click", nextRecipe)
+  })
+</script>
 
 <script id="recipe-template" type="text/x-handlebars-template">
   <h1>{{name}}</h1>
@@ -45,16 +24,13 @@
   <h3>Comments</h3>
     {{#recipeComments comments}}
     {{content}} ~by <strong>{{user.email}}</strong><br>
+      {{#if comments}}
       <a href="{{recipe_id}}/comments/{{id}}/edit">Edit Comment</a><br>
       <a rel="nofollow" href="{{recipe_id}}/comments/{{id}}" data-method="delete">Delete Comment</a><br>
+      {{/if}}
     {{/recipeComments}}
 
     <p><a href="/recipes/{{id}}/comments/new">Add Comment</a></p>
     <p><a href="/recipes/{{id}}/edit">Edit Recipe</a></p>
     <p><a rel="nofollow" href="/recipes/{{id}}" data-method="delete">Delete Recipe</a></p>
 </script>
-
-
-
-
-<p><button class= "js-next" data-id="<%=@recipe.id%>" type="button">Next Recipe</button></p>

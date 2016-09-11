@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     resources :recipes, only: [:index]
   end
 
-
   resources :recipes do
-    resources :comments, only: [:new, :create, :edit, :update, :destroy, :show, :index]
+    resources :comments
   end
 
+  get 'recipes/ingredients/new', to: 'ingredients#new'
   get 'users/most_recipes', to: 'users#show'
 end
