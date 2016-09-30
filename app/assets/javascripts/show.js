@@ -19,7 +19,7 @@ nextRecipe = function() {
 
       $.get("/recipes/" + nextId + ".json", function(data) {
         setTemplate()
-        var recipe = new Recipe(data["recipe"]);
+        var recipe = new Recipe(data);
         var recipeDisplay = recipe.renderDisplay()
         $('#recipeResults').html(recipeDisplay)
 
@@ -34,7 +34,7 @@ showRecipe = function() {
   var recipeId = $('h1').attr('data-id')
   $.get("/recipes/" + recipeId + ".json", function(data) {
     setTemplate()
-    var recipe = new Recipe(data["recipe"]);
+    var recipe = new Recipe(data);
     var recipeDisplay = recipe.renderDisplay()
     $('#recipeResults').html(recipeDisplay)
   })

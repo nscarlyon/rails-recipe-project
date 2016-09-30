@@ -1,5 +1,5 @@
 function Recipes(attributes) {
-  this.recipes = attributes.recipes
+  this.recipes = attributes
 }
 
 Recipes.setTemplate = function() {

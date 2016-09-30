@@ -58,7 +58,7 @@ formSubmit = function(event) {
   success = function(data) {
     $('#new_recipe')[0].reset()
     $('#new_recipe input:submit').prop('disabled', false)
-    var recipe = new Recipe(data["recipe"]);
+    var recipe = new Recipe(data);
     var recipeDisplay = recipe.renderDisplay()
 
     $('#recipeResults').append(recipeDisplay)
