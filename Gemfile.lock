@@ -83,6 +83,7 @@ GEM
     json (1.8.3)
     jsonapi (0.1.1.beta2)
       json (~> 1.8)
+    jsonapi-parser (0.1.1.beta2)
     jwt (1.5.6)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -123,6 +124,7 @@ GEM
     pkg-config (1.1.7)
     puma (3.6.0)
     rack (2.0.1)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.1)
@@ -208,10 +210,13 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.5)
   jquery-rails
+  jsonapi-parser (~> 0.1.1.beta1)
   listen (~> 3.0.5)
+  omniauth
   omniauth-facebook
   pg
   puma (~> 3.0)
+  rack-cors
   rails (~> 5.0.0)
   sass-rails (~> 5.0)
   spring
@@ -224,4 +229,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.13.1
+   1.13.5

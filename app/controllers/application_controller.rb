@@ -1,12 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  def set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+  after_filter :set_csrf_cookie
+
+  def set_csrf_cookie
+    cookies['XSRF-TOKEN'] = form_authenticity_token
+    if protect_against_forgery?
+    end
   end
 
-  def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || home_path
-  end
 
+  def verified_request?
+    super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
+  end
 end
